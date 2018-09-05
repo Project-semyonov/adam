@@ -1,5 +1,5 @@
 # Adam
-This is the begining of the 4250 project. Main development branch
+This is the begining of the 4360 project. Main development branch
 
 ## Tools
 1. Jenkins - CI/CD
@@ -9,7 +9,7 @@ This is the begining of the 4250 project. Main development branch
 5. Microservices
 6. Raspberry Pi Projects
 7. Google drive
-8. SPA - Vue, React, Bootstrap, Other?
+8. SPA - Vue
 
 ### Bonus:
 Kubernetes

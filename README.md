@@ -1,5 +1,5 @@
 # Adam
-this is the begining of the 4250 project.
+This is the begining of the 4250 project. Main development branch
 
 ## Tools
 1. Jenkins - CI/CD
@@ -22,3 +22,4 @@ Multiple homes
 ## Contributors
 Eli Skaronea
 Joey Brennan
+Roach

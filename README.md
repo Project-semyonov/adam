@@ -19,6 +19,7 @@ Mobile
 Users
 Multiple homes
 
-### Signed:
-1. Joey
-2. Roach
+## Contributors
+Eli Skaronea
+Joey Brennan
+Roach

@@ -25,7 +25,7 @@ Joey Brennan
 Roach
 Fred Gruetzner
 Nathan
-Nick
+Nick Miller
 
 
 #Test Feature Branching

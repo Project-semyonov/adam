@@ -28,5 +28,4 @@ Nathan
 Nick Miller
 
 ## Test Feature Branching
-## My feature 
-
+## My feature

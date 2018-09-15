@@ -27,5 +27,3 @@ Fred Gruetzner
 Nathan
 Nick Miller
 
-## Test Feature Branching
-## My feature

@@ -17,7 +17,6 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh "docker run semyonov/test_python"
-                sh "python ./Test.py"
             }
         }
     }

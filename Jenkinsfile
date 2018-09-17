@@ -5,9 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building docker image..'
-                sh "docker build -t semyonov/test_python ."
+                sh "docker build -t semyonov4360/test_python ."
                 //Next step is to push this image to semyonov docker-hub repo
                 //Jenkins will require credentials to get into this repo
+
                 withCredentials([[$class: 'UsernamePasswordMultiBinding',
                 credentialsId: 'docker-hub-credentials',
                 usernameVariable: 'DOCKER_HUB_USER',
@@ -15,6 +16,10 @@ pipeline {
                 {
                     sh "docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}"
                 }
+
+                //**Now push to semyonov4360 repo
+                sh "docker push semyonov4360/test_python"
+                
             }
         }
         stage('Test') {

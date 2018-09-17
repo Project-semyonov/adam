@@ -8,10 +8,12 @@ pipeline {
                 sh "docker build -t semyonov/test_python ."
                 //Next step is to push this image to semyonov docker-hub repo
                 //Jenkins will require credentials to get into this repo
-                docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                //push("${env.BUILD_NUMBER}")
-                //app.push("latest")
-                sh "docker push semyonov/test_python:latest"
+                withCredentials([[$class: 'UsernamePasswordMultiBinding',
+                credentialsId: 'docker-hub-credentials',
+                usernameVariable: 'DOCKER_HUB_USER',
+                passwordVariable: 'DOCKER_HUB_PASSWORD']]) 
+                {
+                    sh "docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}"
                 }
             }
         }

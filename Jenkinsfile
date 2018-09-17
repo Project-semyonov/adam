@@ -13,7 +13,6 @@ pipeline {
                 //app.push("latest")
                 sh "docker push semyonov/test_python:latest"
                 }
-        }
             }
         }
         stage('Test') {

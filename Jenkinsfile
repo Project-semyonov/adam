@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building docker image..'
-                sh "docker build -t semyonov/test_python"
+                sh "docker build -t semyonov/test_python ."
             }
         }
         stage('Test') {

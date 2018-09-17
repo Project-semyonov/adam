@@ -9,8 +9,10 @@ pipeline {
                 //Next step is to push this image to semyonov docker-hub repo
                 //Jenkins will require credentials to get into this repo
                 docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-                app.push("${env.BUILD_NUMBER}")
-                app.push("latest")
+                //push("${env.BUILD_NUMBER}")
+                //app.push("latest")
+                sh "docker push semyonov/test_python:latest"
+                }
         }
             }
         }

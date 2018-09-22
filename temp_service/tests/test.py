@@ -1,5 +1,5 @@
 import unittest
-from ./source import example
+from source import example
 class Test_example(unittst.TestCase):
     def test_one(self):
         self.assertEqual(example.mirror(1), 1)

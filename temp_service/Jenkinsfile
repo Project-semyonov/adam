@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building docker image..'
-                sh "docker build -t semyonov4360/test_python ."
+                sh "docker build -t semyonov4360/test_python ./temp_service"
     /*          Next step is to push this image to semyonov docker-hub repo
                 //Jenkins will require credentials to get into this repo
 

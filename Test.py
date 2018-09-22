@@ -16,6 +16,7 @@ class test_test(unittest.TestCase):
     def one_test(self):
         foo = Test()
         self.assertEqual(g.mirror(1), 1)
+        self.assertEqual(g.mirror(1), 2)
 
 if __name__ == '__main__':
     foo = Test()

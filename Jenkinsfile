@@ -32,7 +32,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "docker run semyonov/test_python"
+                sh "docker run semyonov4360/test_python"
             }
         }
     }

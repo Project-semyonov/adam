@@ -1,4 +1,4 @@
 FROM python:3-alpine
-VOLUME ["/temp_service"]
-WORKDIR /temp_service
-CMD [ "python3", "./example.py"]
+ADD ./example.py .
+ADD ./test.py .  
+CMD [ "python3", "example.py"]

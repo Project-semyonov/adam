@@ -26,7 +26,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh "sudo python3 -m unittest test.py"
+                sh "pwd"
+                sh "sudo python3 -m unittest /temp_service/test.py"
             }
         }
         stage('Deploy') {

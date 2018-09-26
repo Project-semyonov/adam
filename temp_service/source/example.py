@@ -1,4 +1,4 @@
-class Test:
+class prove_works:
     def __init__(self):
         self.dummy = ""
 
@@ -6,6 +6,9 @@ class Test:
         self.dummy = "Hello World!"
         print(self.dummy)
 
+    def mirror(self, num):
+        return num
+
 if __name__ == '__main__':
-    foo = Test()
+    foo = prove_works()
     foo.printer()

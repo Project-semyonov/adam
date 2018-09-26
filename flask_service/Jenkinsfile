@@ -31,7 +31,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "docker run -p 7904:5000 semyonov4360/flask_endpoint"
+                sh "docker rm flask_endpoint --force"
+                sh "docker run --name flask_endpoint -p 7904:5000 semyonov4360/flask_endpoint"
             }
         }
     }

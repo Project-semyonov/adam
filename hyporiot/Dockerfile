@@ -2,8 +2,15 @@ FROM hypriot/rpi-alpine-scratch
 RUN apk update && \
 apk upgrade && \
 apk add bash && \
-apk apt-get install -y python && \
-apk apt-get install -y python-pip
+apk add --update \
+	python3 \
+	python \
+	python-dev \
+	python3-dev \
+	py-pip \
+	build-base \
+&& pip install virtualenv \
+&& rm -rf /var/cache/apk/*
 ADD . .
 #ADD ./example.py .
 #ADD ./test.py .

@@ -1,0 +1,3 @@
+#!/bin/bash
+docker build -t semyonove4360/vue_cli .
+

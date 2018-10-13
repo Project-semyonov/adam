@@ -1,7 +1,7 @@
 <template>
   <ul id="Temps">
   <li v-for="temp in tempData">
-    {{ tempData }}
+    {{ temp }}
   </li>
 </ul>
 </template>
@@ -31,6 +31,7 @@ export default {
   created() {
     this.getTemps();
   },
+
 };
 
 </script>

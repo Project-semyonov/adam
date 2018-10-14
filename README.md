@@ -12,7 +12,7 @@ Docker images can be found at [Semyonov4360 User Page](https://hub.docker.com/u/
 docker run --name vue-app -p 8080:8080 semyonov4360/vue_app
 
 ```
-[Vue Homepage](https://localhost:8080/#/home)
+After container is running: goto [Vue Homepage](https://localhost:8080/#/home)
 
 
 # Flask Endpoint

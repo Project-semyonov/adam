@@ -1,12 +1,8 @@
 <template>
-  <div class="temp-container">
-    <div class="temp-header">
-      <router-link to="/home" tag="button" class="btn btn-warning btn-sm">Homepage</router-link>
-      <router-link to="/temp/all" tag="button" class="btn btn-danger btn-sm">Temp</router-link>
-      <h1>Temp</h1>
-    </div>
-    <div class="temp-table">
+  <div class="house-temp-container">
+    <div class="row">
       <div class="col-lg-4">
+        <h1>House Temps</h1>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -37,7 +33,7 @@ export default {
   },
   methods: {
     getTemps() {
-      const path = 'http://localhost:5000/temp/all';
+      const path = 'http://localhost:5000/temp/am';
       axios.get(path)
         .then((res) => {
           this.tempData = res.data;

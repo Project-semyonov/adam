@@ -12,13 +12,28 @@ export default {
 </script>
 
 <style>
+body{
+  background-color: rgb(13, 152, 170);
+}
+.temp-header{
+    background: bisque;
+    color: black;
+  }
+.temp-container h1{
+  padding: 10px;
+}
+.homepage-header {
+  background: bisque;
+  color: black;
+}
+.homepage-container h1{
+  padding: 10px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #000407;
-  background-color: powderblue;
-  margin-top: 60px;
+  text-align: left;
+  color: black;
 }
 </style>

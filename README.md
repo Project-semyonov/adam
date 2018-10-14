@@ -45,10 +45,10 @@ Users
 Multiple homes
 
 ## Contributors
-Eli Skaronea
-Joey Brennan
-Roach
-Fred Gruetzner
-Nathan
-Nick Miller
+- Eli Skaronea
+- Joey Brennan
+- Roach
+- Fred Gruetzner
+- Nathan
+- Nick Miller
 

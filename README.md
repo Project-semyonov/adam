@@ -1,5 +1,5 @@
-# Adam
-This is the begining of the 4360 project. Main development branch
+# Docker Repository
+Docker images can be found at [Semyonov4360 User Page](https://hub.docker.com/u/semyonov4360/)
 
 # Vue Client
 
@@ -12,6 +12,10 @@ This is the begining of the 4360 project. Main development branch
 docker run --name vue-app -p 8080:8080 semyonov4360/vue_app
 
 ```
+[Vue Homepage] (localhost:8080/#/home)
+
+
+
 # Flask Endpoint
 
 > A Flask Endpoint for IoT Devices - Project Semyonov
@@ -22,7 +26,6 @@ docker run --name vue-app -p 8080:8080 semyonov4360/vue_app
 docker run --name flask_app -p 5000:5000 semyonov4360/flask_endpoint
 
 ```
-
 
 ## Tools
 1. Jenkins - CI/CD

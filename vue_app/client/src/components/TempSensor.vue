@@ -51,11 +51,15 @@ export default {
   methods: {
     getTemps() {
       const path = 'http://localhost:5000/temp/all';
+      // eslint-disable-next-line
+      const updateTime = require('time-stamp');
+      const currentTime = updateTime('HH:mm:ss');
       this.showMessage = true;
       axios.get(path)
         .then((res) => {
           this.tempData = res.data;
-          this.message = 'Got temps from the sensor! 🤘';
+          // eslint-disable-next-line
+          this.message = 'Got temps from the sensor at ' + currentTime + '! 🤘 ';
         })
         .catch((error) => {
           // eslint-disable-next-line

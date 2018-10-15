@@ -15,19 +15,18 @@ export default {
 body{
   background-color: rgb(13, 152, 170);
 }
-.temp-header{
-    background: bisque;
-    color: black;
-  }
-.temp-container h1{
-  padding: 10px;
-}
-.homepage-header {
+.header{
+  margin: 0px;
+  text-align: center;
   background: bisque;
   color: black;
 }
-.homepage-container h1{
+.temp-alert{
   padding: 10px;
+  color: black;
+}
+.col-lg-4{
+  margin: 10px;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

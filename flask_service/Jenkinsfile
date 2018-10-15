@@ -12,14 +12,14 @@ pipeline {
                 withCredentials([[$class: 'UsernamePasswordMultiBinding',
                 credentialsId: 'docker-hub-credentials',
                 usernameVariable: 'DOCKER_HUB_USER',
-                passwordVariable: 'DOCKER_HUB_PASSWORD']]) 
+                passwordVariable: 'DOCKER_HUB_PASSWORD']])
                 {
                     sh "docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}"
                 }
 
                 //**Now push to semyonov4360 repo
                 sh "docker push semyonov4360/flask_endpoint"
-    
+
             }
         }
         stage('Test') {

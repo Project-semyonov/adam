@@ -52,18 +52,26 @@ class MotionVidoe:
 
         self.camera.stop_recording()
 
+        answer = input("would you like to continue?")
+
         print('Captured %s' % filename)
 
-    # image1, buffer1 = compare()
+        if answer[0].lower() is "y":
+            return 
 
-    # timestamp = time.time()
+        elif answer[0].lower() is "n":
+            exit(0)
+
+        # image1, buffer1 = compare()
+
+        # timestamp = time.time()
 
 
 if __name__ == '__main__':
     cam = MotionVidoe()
 
     image1, buffer1 = cam.compare()
-    
+
     while not cam.new_video():
         image2, buffer2 = cam.compare()
 

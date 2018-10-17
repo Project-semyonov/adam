@@ -21,6 +21,8 @@ class MotionVidoe:
         self.width = 1280
         self.height = 960
 
+        self.timestamp = datetime.now().strftime('%Y.%m.%d.%H.%M')
+
     def compare(self):
         self.camera.resolution = (640, 480)
 
@@ -39,10 +41,9 @@ class MotionVidoe:
         return im, buffer
 
     def new_video(self):
-        time = datetime.now()
+        # time = datetime.now()
 
-        filename = 'motion-video-%04d%02d%02d-%02d%02d%02d.h264' % (
-            time.year, time.month, time.day, time.hour, time.minute, time.second)
+        filename = 'motion-video-{}'.format(self.timestamp)
 
         self.camera.resolution = (self.width, self.height)
 
@@ -57,7 +58,7 @@ class MotionVidoe:
         print('Captured %s' % filename)
 
         if answer[0].lower() is "y":
-            return 
+            return
 
         elif answer[0].lower() is "n":
             exit(0)

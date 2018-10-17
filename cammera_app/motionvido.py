@@ -55,7 +55,7 @@ class MotionVidoe:
 
         answer = input("would you like to continue?")
 
-        print('Captured %s' % filename)
+        print("Captured {}".format(filename))
 
         if answer[0].lower() is "y":
             return

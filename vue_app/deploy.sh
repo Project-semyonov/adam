@@ -1,5 +1,7 @@
 #!/bin/bash
-#docker build -t semyonov4360/vue_app:rpi .
+
+docker build -t semyonov4360/vue_app:rpi .
+
 if [ -e ../password.txt ]
 then 
     myVar=$(cat ../password.txt)

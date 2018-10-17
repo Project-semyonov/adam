@@ -12,7 +12,7 @@ class MotionVidoe:
     def __init__(self):
         self.camera = picamera.PiCamera()
 
-        self.rec_length = 30
+        self.rec_length = 10
 
         self.difference = 20
 
@@ -21,7 +21,7 @@ class MotionVidoe:
         self.width = 1280
         self.height = 960
 
-        self.timestamp = datetime.now().strftime('%Y.%m.%d.%H.%M')
+        self.timestamp = datetime.now().strftime('%d.%H.%M%.%s')
 
     def compare(self):
         self.camera.resolution = (640, 480)
@@ -43,7 +43,7 @@ class MotionVidoe:
     def new_video(self):
         # time = datetime.now()
 
-        filename = 'motion-video-{}'.format(self.timestamp)
+        filename = 'motion-video-{}.h264'.format(self.timestamp)
 
         self.camera.resolution = (self.width, self.height)
 
@@ -55,12 +55,12 @@ class MotionVidoe:
 
         answer = input("would you like to continue?")
 
-        print('Captured %s' % filename)
+        print("Captured {}".format(filename))
 
         if answer[0].lower() is "y":
             return
 
-        elif answer[0].lower() is "n":
+        else:
             exit(0)
 
         # image1, buffer1 = compare()

@@ -5,7 +5,7 @@ import os
 import picamera
 import time
 from datetime import datetime
-from PIL import Image
+from Pil import Image
 
 
 class MotionVidoe:

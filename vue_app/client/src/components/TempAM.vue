@@ -4,6 +4,7 @@
       <div class="col-lg-4">
         <h1>House Temps</h1>
         <table class="table table-hover">
+          <div class="temp-table-head">
           <thead>
             <tr>
               <th scope="col">Time</th>
@@ -11,6 +12,7 @@
               <th></th>
             </tr>
           </thead>
+          </div>
           <tbody>
             <tr v-for="temp in tempData" :key="temp">
               <td>{{ temp }}</td>

@@ -8,7 +8,7 @@ from datetime import datetime
 from PIL import Image
 
 
-class MotionVidoe:
+class MotionVideo:
     def __init__(self):
         self.camera = picamera.PiCamera()
 
@@ -22,6 +22,8 @@ class MotionVidoe:
         self.height = 960
 
         self.timestamp = datetime.now().strftime('%d.%H.%M%.%s')
+
+        self.bool = False
 
     def compare(self):
         self.camera.resolution = (640, 480)
@@ -42,6 +44,7 @@ class MotionVidoe:
 
     def new_video(self):
         # time = datetime.now()
+        self.bool = True
 
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 
@@ -53,15 +56,10 @@ class MotionVidoe:
 
         self.camera.stop_recording()
 
-        answer = input("would you like to continue?")
-
         print("Captured {}".format(filename))
 
-        if answer[0].lower() is "y":
-            return
-
-        else:
-            exit(0)
+        self.bool = False
+        return
 
         # image1, buffer1 = compare()
 
@@ -69,34 +67,34 @@ class MotionVidoe:
 
 
 if __name__ == '__main__':
-    cam = MotionVidoe()
+    cam = MotionVideo()
 
     image1, buffer1 = cam.compare()
 
     while True:
-        if cam.camera.wait_recording is True:
+        if cam.bool is True:
             time.sleep(cam.rec_length)
 
-        else:
-            image2, buffer2 = cam.compare()
 
-            change_pixels = 0
+        image2, buffer2 = cam.compare()
 
-            for x in range(0, 100):
-                for y in range(0, 100):
-                    pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
+        change_pixels = 0
 
-                    if pix_diff > cam.difference:
-                        change_pixels += 1
+        for x in range(0, 100):
+            for y in range(0, 100):
+                pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
 
-                    if change_pixels > cam.pixels:
-                        timestamp = time.time()
+                if pix_diff > cam.difference:
+                    change_pixels += 1
 
-                        cam.new_video()
+                if change_pixels > cam.pixels:
+                    timestamp = time.time()
 
-                    image1 = image2
+                    cam.new_video()
 
-                    buffer1 = buffer2
+                image1 = image2
+
+                buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

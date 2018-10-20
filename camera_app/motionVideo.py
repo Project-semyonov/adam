@@ -51,6 +51,8 @@ class MotionVideo:
 
         self.camera.wait_recording(self.rec_length)
 
+        time.sleep(self.rec_length)
+
         self.camera.stop_recording()
 
         answer = input("would you like to continue?")
@@ -91,8 +93,8 @@ if __name__ == '__main__':
                     timestamp = time.time()
 
                     cam.new_video()
-                    
-                    time.sleep(cam.rec_length)
+
+                    # time.sleep(cam.rec_length)
 
                 image1 = image2
 

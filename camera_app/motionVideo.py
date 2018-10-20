@@ -8,7 +8,7 @@ from datetime import datetime
 from PIL import Image
 
 
-class MotionVidoe:
+class MotionVideo:
     def __init__(self):
         self.camera = picamera.PiCamera()
 
@@ -69,18 +69,20 @@ class MotionVidoe:
 
 
 if __name__ == '__main__':
-    cam = MotionVidoe()
+    cam = MotionVideo()
 
     image1, buffer1 = cam.compare()
 
-    while not cam.new_video():
+    z = 1
+
+    while True:
         image2, buffer2 = cam.compare()
 
         change_pixels = 0
 
         for x in range(0, 100):
             for y in range(0, 100):
-                pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
+                pix_diff = abs(buffer1[x, y][z] - buffer2[x, y][z])
 
                 if pix_diff > cam.difference:
                     change_pixels += 1
@@ -89,6 +91,8 @@ if __name__ == '__main__':
                     timestamp = time.time()
 
                     cam.new_video()
+                    
+                    time.sleep(cam.rec_length)
 
                 image1 = image2
 

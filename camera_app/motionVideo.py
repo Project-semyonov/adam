@@ -42,6 +42,7 @@ class MotionVideo:
 
     def new_video(self):
         # time = datetime.now()
+        # filename = 'motion-video-{}.mp4'.format(self.timestamp)
 
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 

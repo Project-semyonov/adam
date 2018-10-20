@@ -3,6 +3,10 @@
 # password folder
 password.txt
 
+# ignore the test picures and videos
+*.jpg
+*.h264
+
 # Executables
 *.exe
 *.out

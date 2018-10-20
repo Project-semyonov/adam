@@ -71,6 +71,8 @@ if __name__ == '__main__':
 
     image1, buffer1 = cam.compare()
 
+    z = 1
+
     while True:
         if cam.bool is True:
             time.sleep(cam.rec_length)
@@ -82,7 +84,7 @@ if __name__ == '__main__':
 
         for x in range(0, 100):
             for y in range(0, 100):
-                pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
+                pix_diff = abs(buffer1[x, y][z] - buffer2[x, y][z])
 
                 if pix_diff > cam.difference:
                     change_pixels += 1

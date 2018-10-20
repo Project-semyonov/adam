@@ -73,26 +73,30 @@ if __name__ == '__main__':
 
     image1, buffer1 = cam.compare()
 
-    while not cam.new_video():
-        image2, buffer2 = cam.compare()
+    while True:
+        if cam.camera.wait_recording is True:
+            time.sleep(cam.rec_length)
 
-        change_pixels = 0
+        else:
+            image2, buffer2 = cam.compare()
 
-        for x in range(0, 100):
-            for y in range(0, 100):
-                pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
+            change_pixels = 0
 
-                if pix_diff > cam.difference:
-                    change_pixels += 1
+            for x in range(0, 100):
+                for y in range(0, 100):
+                    pix_diff = abs(buffer1[x, y][1] - buffer2[x, y][1])
 
-                if change_pixels > cam.pixels:
-                    timestamp = time.time()
+                    if pix_diff > cam.difference:
+                        change_pixels += 1
 
-                    cam.new_video()
+                    if change_pixels > cam.pixels:
+                        timestamp = time.time()
 
-                image1 = image2
+                        cam.new_video()
 
-                buffer1 = buffer2
+                    image1 = image2
+
+                    buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

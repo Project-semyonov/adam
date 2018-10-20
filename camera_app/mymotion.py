@@ -44,11 +44,10 @@ class MotionVideo:
 
     def new_video(self):
         # time = datetime.now()
-        self.bool = True
 
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 
-        self.camera.resolution = (self.width, self.height)
+        self.camera.resolution = (1280, 960)
 
         self.camera.start_recording(filename)
 
@@ -58,8 +57,7 @@ class MotionVideo:
 
         print("Captured {}".format(filename))
 
-        self.bool = False
-        return self.camera.wait.recording
+        return True
 
         # image1, buffer1 = compare()
 
@@ -72,31 +70,30 @@ if __name__ == '__main__':
     image1, buffer1 = cam.compare()
 
     z = 1
-
+    done_stream = None
     while True:
-        if cam.camera.wait_recording is True:
-            time.sleep(cam.rec_length)
+        if done_stream == True:
+            exit_while_recording = True
+        exit_while_recording = True
+        while exit_while_recording == True:
+            recording_stream = None
+            image2, buffer2 = cam.compare()
+            change_pixels = 0
+            for x in range(0, 100):
+                for y in range(0, 100):
+                    pix_diff = abs(buffer1[x, y][z] - buffer2[x, y][z])
 
+                    if pix_diff > cam.difference:
+                        change_pixels += 1
 
-        image2, buffer2 = cam.compare()
+                    if change_pixels > cam.pixels:
+                        timestamp = time.time()
+                        done_stream = cam.new_video()
+                        exit_while_recording = False
+                        break
+                    image1 = image2
 
-        change_pixels = 0
-
-        for x in range(0, 100):
-            for y in range(0, 100):
-                pix_diff = abs(buffer1[x, y][z] - buffer2[x, y][z])
-
-                if pix_diff > cam.difference:
-                    change_pixels += 1
-
-                if change_pixels > cam.pixels:
-                    timestamp = time.time()
-
-                    cam.new_video()
-
-                image1 = image2
-
-                buffer1 = buffer2
+                    buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

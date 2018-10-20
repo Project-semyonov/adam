@@ -59,7 +59,7 @@ class MotionVideo:
         print("Captured {}".format(filename))
 
         self.bool = False
-        return
+        return self.camera.wait.recording
 
         # image1, buffer1 = compare()
 
@@ -72,7 +72,7 @@ if __name__ == '__main__':
     image1, buffer1 = cam.compare()
 
     while True:
-        if cam.bool is True:
+        if cam.camera.wait_recording is True:
             time.sleep(cam.rec_length)
 
 

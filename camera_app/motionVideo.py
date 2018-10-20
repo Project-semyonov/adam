@@ -96,9 +96,9 @@ if __name__ == '__main__':
 
                     # time.sleep(cam.rec_length)
 
-                image1 = image2
+        image1 = image2
 
-                buffer1 = buffer2
+        buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

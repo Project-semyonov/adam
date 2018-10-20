@@ -44,7 +44,7 @@ class MotionVideo:
 
     def new_video(self):
         # time = datetime.now()
-
+        print('started recording file')
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 
         self.camera.resolution = (1280, 960)
@@ -72,8 +72,10 @@ if __name__ == '__main__':
     z = 1
     done_stream = None
     while True:
+        print('in first while')
         if done_stream == True:
             exit_while_recording = True
+            print('set EWT to true')
         exit_while_recording = True
         while exit_while_recording == True:
             recording_stream = None
@@ -90,10 +92,12 @@ if __name__ == '__main__':
                         timestamp = time.time()
                         done_stream = cam.new_video()
                         exit_while_recording = False
+                        print('EWR = False')
                         break
-                    image1 = image2
+            else:
+                image1 = image2
 
-                    buffer1 = buffer2
+                buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

@@ -1,6 +1,5 @@
 picamera
-time
-pillow
+Pillow
 datetime
 io
 os

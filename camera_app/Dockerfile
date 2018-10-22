@@ -7,10 +7,6 @@ RUN apk add --no-cache python3 && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 ADD /source_files /
-RUN pip3 install picamera
-RUN pip3 install time
-RUN pip3 install Pillow
-RUN pip3 datetime
-RUN pip3 install io
-RUN pip3 install os
+RUN pip3 install -r requirements.txt
+RUN pip3 install -e .
 CMD python3 mymotion.py 

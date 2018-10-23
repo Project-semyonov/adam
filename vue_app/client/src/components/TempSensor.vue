@@ -2,13 +2,17 @@
   <div class="temp-container">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <div class="header">
-      <router-link to="/home" tag="button" class="btn btn-outline-warning">Homepage</router-link>
+      <div class="home-button">
+        <router-link to="/home" tag="button" class="btn btn-outline-danger">Homepage</router-link>
+      </div>
       <router-link to="/door/front" tag="button" class="btn btn-outline-warning"
         >Front Door</router-link>
       <router-link to="/temp/all" tag="button" class="btn btn-warning"
         >Temp Sensor</router-link>
-      <a href="https://github.com/Project-semyonov/adam" tag="button"
+      <div class="github-button">
+        <a href="https://github.com/Project-semyonov/adam" tag="button"
         class="btn btn-outline-success">Github Repo</a>
+      </div>
       <h1>Temp Sensor</h1>
     </div>
     <div class="temp-table">

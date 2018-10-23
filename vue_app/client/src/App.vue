@@ -15,6 +15,12 @@ export default {
 .header{
   text-align: center;
 }
+.home-button{
+  float: left;
+}
+.github-button{
+  float: right;
+}
 .temp-table{
   text-align: center;
   table-layout: fixed;

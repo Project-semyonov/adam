@@ -1,0 +1,5 @@
+picamera
+Pillow
+datetime
+io
+os

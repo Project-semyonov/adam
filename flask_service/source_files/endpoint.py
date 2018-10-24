@@ -1,5 +1,6 @@
 
 from flask import Flask
+from flask_cors import CORS
 from flask_restful import Api, Resource, reqparse
 import time
 import json
@@ -7,6 +8,9 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 api = Api(app)
+
+# enable CORS
+CORS(app)
 
 epoch = time.time()
 time_start = (datetime.now()-timedelta(hours=.5)).timestamp()

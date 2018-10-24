@@ -7,6 +7,6 @@ RUN apk add --no-cache python3 && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 ADD /source_files /
-RUN pip3 install flask flask-restful
-RUN pip3 install Flask-Cors==3.0.4
-CMD python3 json_mock.py && python3 endpoint.py
+RUN pip3 install -r requirements.txt
+RUN pip3 install -e .
+CMD python3 mymotion.py 

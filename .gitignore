@@ -1,0 +1,28 @@
+# My git ignore using template from GitHub
+
+# password folder
+password.txt
+
+# ignore the test picures and videos
+*.jpg
+*.h264
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Metadata
+*.idea
+*/.metadata/
+
+*/.recommenders/
+
+# Compiled class file
+*.class
+*.classpath
+*.project
+*/.settings/
+
+# Log file
+*.log

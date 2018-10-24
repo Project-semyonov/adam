@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building docker image..'
-                sh "docker build -t semyonov4360/flask_endpoint ./flask_service"
+                sh "docker build -t semyonov4360/vue_app ./vue_app"
     //          Next step is to push this image to semyonov docker-hub repo
                 //Jenkins will require credentials to get into this repo
 
@@ -18,7 +18,7 @@ pipeline {
                 }
 
                 //**Now push to semyonov4360 repo
-                sh "docker push semyonov4360/flask_endpoint"
+                sh "docker push semyonov4360/vue_app"
 
             }
         }
@@ -31,8 +31,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh "docker rm flask_endpoint --force"
-                sh "docker run --name flask_endpoint -p 7904:5000 semyonov4360/flask_endpoint"
+                sh "docker rm vue_app --force"
+                sh "docker run --name vue_app -p 8080:8080 semyonov4360/vue_app"
             }
         }
     }

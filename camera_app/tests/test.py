@@ -1,32 +1,42 @@
 import unittest
-from ..source.motionVideo import MotionVideo
-class Test_camera(unittest.TestCase):
+from ..source_files.myMotion import MyMotion
+# from PIL import Image
+import PIL.ImageOps
+
+
+class TestCamera(unittest.TestCase):
     def test_noMotion(self):
-        """I think the actual flow of the code should be improved
-            this just looks wrong trying to write tests for it
         """
-       cam1 buff1 = MotionVideo.compare()
-       
-       assert(cam1 == cam1)
-       assert(buff1 == buff1)
+        I think the actual flow of the code should be improved
+        this just looks wrong trying to write tests for it
+        :return:
+        """
+
+        buff1 = MyMotion.compare(MyMotion(10))
+
+        assert (buff1 == buff1)
 
     def test_motion(self):
-        """ pretty straight forward I'm thinking the tests will work
+        """
+        Pretty straight forward I'm thinking the tests will work
         we rewrite it
+        :return:
         """
 
-        cam1 buff1 = MotionVideo.compare()
+        buff1 = MyMotion.compare(MyMotion(10))
 
-        cam2 = PIL.ImageOps.invert(cam1)
+        buff2 = PIL.ImageOps.invert(buff1)
 
-        #fake motion by the inversion of the image
-        assert(cam2 != cam1)
+        # Fake motion by the inversion of the image
+        assert (buff2 != buff1)
 
     def test_recording(self):
-        """ this should be the easiest to test in theory
-        but idk how to yet
         """
-        
+        This should be the easiest to test in theory
+        but idk how to yet
+        :return:
+        """
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     unittest.main()

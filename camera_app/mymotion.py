@@ -73,14 +73,21 @@ if __name__ == '__main__':
     done_stream = None
     while True:
         print('in first while')
-        if done_stream == True:
+
+        if done_stream:
             exit_while_recording = True
+
             print('set EWT to true')
+
         exit_while_recording = True
-        while exit_while_recording == True:
+
+        while exit_while_recording:
             recording_stream = None
+
             image2, buffer2 = cam.compare()
+
             change_pixels = 0
+
             for x in range(0, 100):
                 for y in range(0, 100):
                     pix_diff = abs(buffer1[x, y][z] - buffer2[x, y][z])
@@ -90,14 +97,18 @@ if __name__ == '__main__':
 
                     if change_pixels > cam.pixels:
                         timestamp = time.time()
-                        done_stream = cam.new_video()
-                        exit_while_recording = False
-                        print('EWR = False')
-                        break
-            else:
-                image1 = image2
 
-                buffer1 = buffer2
+                        done_stream = cam.new_video()
+
+                        exit_while_recording = False
+
+                        print('EWR = False')
+
+                        break
+        else:
+            image1 = image2
+
+            buffer1 = buffer2
 """
     while True:
         image2, buffer2 = cam.compare()

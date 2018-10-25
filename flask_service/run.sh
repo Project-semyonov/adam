@@ -1,5 +1,5 @@
 #!/bin/bash
-if [-e docker container ls -a | grep "flask_endpoint"]
+if [ "$(docker container ls -a | grep -c "flask_endpoint")" -ge 1 ]
 then
     docker restart flask_endpoint
 

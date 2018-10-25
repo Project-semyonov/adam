@@ -1,5 +1,5 @@
 #!/bin/bash
-if [-e docker container ls -a | grep "vue_app"]
+if [ "$(docker container ls -a | grep -c "vue_app")" -ge 1 ]
 then
     docker reastart vue_app
 

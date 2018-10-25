@@ -1,5 +1,5 @@
 #!/bin/bash
-if [-e docker container ls -a | grep "camera_app"]
+if [ "$(docker container ls -a | grep -c "camera_app")" -ge 1 ]
 then
         docker restart camera_app
 else

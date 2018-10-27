@@ -1,8 +1,8 @@
-import io
+# import io
 import picamera
 import time
 from datetime import datetime
-from PIL import Image
+from PIL import Image, ImageChops
 
 
 class MyMotion:
@@ -31,11 +31,38 @@ class MyMotion:
         This will create the image or buffer or both depending on what Fred decided
         :return: not sure yet ^
         """
-        self.camera.resolution = (self.width, self.height)
+        # self.camera.resolution = (self.width, self.height)
 
-        # TODO: have the camera capture 5 second buff then send it to be checked for motion?
+        stream = picamera.PiCameraCircularIO(self.camera, seconds=10)
+
+        self.camera.resolution = (640, 480)
+
+        self.camera.framerate = 32
+
+        self.camera.start_preview()
+
+        time.sleep(2)
+
+        self.camera.capture(stream, format='jpeg')
+
+        # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
 
         return buff
+        """
+        stream.seek(0)
+
+        img1 = Image.open(stream)
+
+        stream.seek(1)
+
+        img2 = Image.open(stream)
+
+        diff = ImageChops.difference(img1, img2).getbbox() is None
+
+        print(diff)
+
+        return diff
+        """
 
     def motion(self, buffer):
         """
@@ -47,10 +74,15 @@ class MyMotion:
         :return: unknown ask Fred
         """
 
-        # TODO: check the buffer for motion using Fred's far better code
+        # TODO: check the buffer for motion using Fred's far better code once it has a buffer
 
-        # send the buffer with motion to add to the recording
-        self.new_video(buffer)
+        if diff:
+            # send the buffer with motion to add to the recording
+            self.new_video(buffer)
+
+        else:
+            # might want to sleep here so it only checks once the buffer runs out and some time has passed
+            return
 
     def new_video(self, buffer):
         """
@@ -84,7 +116,6 @@ class MyMotion:
 if __name__ == '__main__':
     vidLen = 10
     cam = MyMotion(vidLen)
-    answer = 1
 
     # might be the wrong question or totally unneeded
     '''
@@ -102,14 +133,20 @@ if __name__ == '__main__':
     '''
 
     # loop for a set number of times I've set to once
-    while answer > 0:
+    while True:
         # Umm whatever the return is passed to check motion
         buff = cam.compare()
 
         # Confusing to have it written in the main of python
         cam.motion(buff)
 
-        answer -= 1
+        answer = input(print("would you like to make another video? [Y/n"))
+
+        if answer[0].lower() is 'y':
+            continue
+
+        else:
+            break
 
     print("Created the above video shutting down")
 

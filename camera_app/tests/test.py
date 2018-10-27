@@ -5,7 +5,7 @@ import PIL.ImageOps
 
 
 class TestCamera(unittest.TestCase):
-    def test_noMotion(self):
+    def test_compare(self):
         """
         I think the actual flow of the code should be improved
         this just looks wrong trying to write tests for it
@@ -16,7 +16,7 @@ class TestCamera(unittest.TestCase):
 
         assert (buff1 == buff1)
 
-    def test_motion(self):
+    def test_fake_motion(self):
         """
         Pretty straight forward I'm thinking the tests will work
         we rewrite it
@@ -29,6 +29,12 @@ class TestCamera(unittest.TestCase):
 
         # Fake motion by the inversion of the image
         assert (buff2 != buff1)
+
+    def test_compare_no_motion(self):
+        pass
+
+    def test_compare_fake_motion(self):
+        pass
 
     def test_recording(self):
         """

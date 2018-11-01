@@ -2,7 +2,7 @@
 import picamera
 import time
 from datetime import datetime
-from PIL import Image, ImageChops
+import numpy as np
 
 
 class MyMotion:
@@ -12,6 +12,7 @@ class MyMotion:
 
         # hard coded for 10 can change later to true user input
         self.rec_len = time
+        self.camera.framerate = 32
 
         # The amount of different pixels allowed
         self.diff = 20
@@ -33,17 +34,17 @@ class MyMotion:
         """
         # self.camera.resolution = (self.width, self.height)
 
-        stream = picamera.PiCameraCircularIO(self.camera, seconds=10)
-
         self.camera.resolution = (640, 480)
 
-        self.camera.framerate = 32
+        buff = "temp"
 
-        self.camera.start_preview()
+        self.camera.start_recording(buff, format='h264')
 
-        time.sleep(2)
+        # time.sleep(2)
 
-        self.camera.capture(stream, format='jpeg')
+        self.camera.wait_recording(5)
+
+        self.camera.start_recording()
 
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
 
@@ -64,21 +65,25 @@ class MyMotion:
         return diff
         """
 
-    def motion(self, buffer):
+    def motion(self, buff):
         """
         Creating an actual method that will check for motion so we can control
         how often its happening. Then it calls to make a recording with the 5 second
         buffer to add to the from? I liked that idea
 
-        :param buffer: 5 second buffer to check for motion
+        :param buff: 5 second buffer to check for motion
         :return: unknown ask Fred
         """
 
         # TODO: check the buffer for motion using Fred's far better code once it has a buffer
 
-        if diff:
+        diff = np.sqrt(np.square(buff['x'].astype(np.float)) +
+                       np.square(buff['y'].astype(np.float))
+                       ).clip(0, 255).astype(np.uint8)
+
+        if (diff > 60).sum() > 10:
             # send the buffer with motion to add to the recording
-            self.new_video(buffer)
+            self.new_video(buff)
 
         else:
             # might want to sleep here so it only checks once the buffer runs out and some time has passed
@@ -97,6 +102,7 @@ class MyMotion:
 
         self.camera.resolution = (self.width, self.height)
 
+        filename += buffer
         # TODO: add the buffer then start the recording
 
         self.camera.start_recording(filename)
@@ -135,10 +141,10 @@ if __name__ == '__main__':
     # loop for a set number of times I've set to once
     while True:
         # Umm whatever the return is passed to check motion
-        buff = cam.compare()
+        buffer = cam.compare()
 
         # Confusing to have it written in the main of python
-        cam.motion(buff)
+        cam.motion(buffer)
 
         answer = input(print("would you like to make another video? [Y/n"))
 

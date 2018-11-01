@@ -27,7 +27,7 @@ class MyMotion:
         # Roach's time stamp much more readable with one error?
         self.timestamp = datetime.now().strftime('%d.%H.%M%.%s')
 
-    def compare(self):
+    def sample(self):
         """
         This will create the image or buffer or both depending on what Fred decided
         :return: not sure yet ^
@@ -82,12 +82,11 @@ class MyMotion:
                        ).clip(0, 255).astype(np.uint8)
 
         if (diff > 60).sum() > 10:
-            # send the buffer with motion to add to the recording
-            self.new_video(buff)
+            return True
 
         else:
             # might want to sleep here so it only checks once the buffer runs out and some time has passed
-            return
+            return None
 
     def new_video(self, buffer):
         """
@@ -141,18 +140,24 @@ if __name__ == '__main__':
     # loop for a set number of times I've set to once
     while True:
         # Umm whatever the return is passed to check motion
-        buffer = cam.compare()
+        buffer = cam.sample()
 
         # Confusing to have it written in the main of python
-        cam.motion(buffer)
+        result = cam.motion(buffer)
 
-        answer = input(print("would you like to make another video? [Y/n"))
+        if result:
+            # send the buffer with motion to add to the recording
+            cam.new_video(buffer)
 
-        if answer[0].lower() is 'y':
-            continue
+            answer = input(print("would you like to make another video? [Y/n"))
 
+            if answer[0].lower() is 'y':
+                continue
+
+            else:
+                break
         else:
-            break
+            continue
 
     print("Created the above video shutting down")
 

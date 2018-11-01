@@ -5,6 +5,13 @@ import PIL.ImageOps
 
 
 class TestCamera(unittest.TestCase):
+    def __init__(self):
+        super().__init__()
+
+        self.testcam = MyMotion(10)
+
+        self.buff = self.testcam.sample()
+
     def test_compare(self):
         """
         I think the actual flow of the code should be improved
@@ -12,9 +19,7 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        buff1 = MyMotion.compare(MyMotion(10))
-
-        assert (buff1 == buff1)
+        assert (self.buff == self.buff)
 
     def test_fake_motion(self):
         """
@@ -23,18 +28,34 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        buff1 = MyMotion.compare(MyMotion(10))
-
-        buff2 = PIL.ImageOps.invert(buff1)
+        buff2 = PIL.ImageOps.invert(self.buff)
 
         # Fake motion by the inversion of the image
-        assert (buff2 != buff1)
+        assert (buff2 != self.buff)
 
     def test_compare_no_motion(self):
-        pass
+        """
+        Test that there is a None return when no motion is detected
+        :return:
+        """
+
+        result = self.testcam.motion(self.buff)
+
+        assert (result is None)
 
     def test_compare_fake_motion(self):
-        pass
+        """
+        Test that motion will return true
+        :return:
+        """
+
+        buff2 = PIL.ImageOps.invert(self.buff)
+
+        buff2 += self.buff
+
+        result = self.testcam.motion(buff2)
+
+        assert (result is True)
 
     def test_recording(self):
         """

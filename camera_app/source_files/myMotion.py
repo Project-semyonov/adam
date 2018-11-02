@@ -1,5 +1,6 @@
 # import io
 import picamera
+import picamera.array
 import time
 from datetime import datetime
 import numpy as np
@@ -43,8 +44,6 @@ class MyMotion(picamera.array.PiMotionAnalysis):
         # time.sleep(2)
 
         self.camera.wait_recording(5)
-
-        self.camera.start_recording()
 
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
 

@@ -17,7 +17,7 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
     camera.framerate = 30
-    stream = picamera.PiCameraCircularIO(camera, second = 20)
+    stream = picamera.PiCameraCircularIO(camera, seconds=20)
     try:
         while True:
             camera.start_recording(

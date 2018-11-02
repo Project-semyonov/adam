@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 
 
-class MyMotion(picamera.array.PiMotionAnalysis):
+class MyMotion():
     def __init__(self, time):
         # Creating the pi camera instance
         self.camera = picamera.PiCamera()
@@ -33,8 +33,8 @@ class MyMotion(picamera.array.PiMotionAnalysis):
         This will create the image or buffer or both depending on what Fred decided
         :return: not sure yet ^
         """
-        # self.camera.resolution = (self.width, self.height)
-
+        self.camera.resolution = (self.width, self.height)
+        """
         self.camera.resolution = (640, 480)
 
         buff = "temp"
@@ -43,10 +43,14 @@ class MyMotion(picamera.array.PiMotionAnalysis):
 
         # time.sleep(2)
 
-        self.camera.wait_recording(5)
+        self.camera.wait_recording(1)
+        """
+        buff = picamera.PiCameraCircularIO(self.camera, seconds=1)
 
+        # buff = picamera.PiCameraCircularIO(self.camera, seconds=1)
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
-
+        # print(type(buff))
+        # print ("hello {}".format(buff))
         return buff
         """
         stream.seek(0)
@@ -75,10 +79,12 @@ class MyMotion(picamera.array.PiMotionAnalysis):
         """
 
         # TODO: check the buffer for motion using Fred's far better code once it has a buffer
-
+        """
         diff = np.sqrt(np.square(buff['x'].astype(np.float)) +
                        np.square(buff['y'].astype(np.float))
                        ).clip(0, 255).astype(np.uint8)
+
+        """
 
         if (diff > 60).sum() > 10:
             return True

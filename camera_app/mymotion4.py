@@ -14,21 +14,44 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
         # than 60, then say we've detected motion
         if (a > 60).sum() > 10:
             print('Motion detected!')
+            return True
+            
 
+    def cleanCodeTest(self):
 
-with picamera.PiCamera() as camera:
-    camera.resolution = (640, 480)
-    camera.framerate = 30
-    stream = picamera.PiCameraCircularIO(camera, seconds=20)
-    try:
-        while True:
+        camera =  picamera.PiCamera()
+        camera.resolution = (640, 480)
+        camera.framerate = 30
+        stream = picamera.PiCameraCircularIO(camera, seconds=20)
+        try:
+            while True:
+                camera.start_recording(
+                    stream, format='h264',
+                    motion_output=self.analyse(camera))
+                
+                camera.wait_recording(5)
+
+                if self.analyse(camera):
+                    camera.stop_recording()
+                    break
+                else:
+                    continue
             camera.start_recording(
                 stream, format='h264',
-                motion_output=MyMotionDetector(camera)
-            )
+                motion_output=self.analyse(camera))
+
             # Keep recording for 10 seconds and only then
             # write stream to disk
-            camera.wait_recording(10)
+            camera.wait_recording(5)
             camera.stop_recording()
-    finally:
-        stream.copy_to('motion.h264')
+
+            
+        finally:
+            stream.copy_to('motion.h264')
+
+if __name__ == '__main__':
+        cam = MyMotionDetector(picamera.PiCamera)
+
+        cam.cleanCodeTest()
+
+

@@ -1,14 +1,15 @@
 # import io
 import picamera
+import picamera.array
 import time
 from datetime import datetime
 import numpy as np
 
 
-class MyMotion:
+class MyMotion(picamera.array.PiMotionAnalysis):
     def __init__(self, time):
         # Creating the pi camera instance
-        self.camera = picamera.Picamera()
+        self.camera = picamera.PiCamera()
 
         # hard coded for 10 can change later to true user input
         self.rec_len = time
@@ -43,8 +44,6 @@ class MyMotion:
         # time.sleep(2)
 
         self.camera.wait_recording(5)
-
-        self.camera.start_recording()
 
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
 

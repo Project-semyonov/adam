@@ -36,9 +36,9 @@ def video_capture(diff):
         # subprocess
         print("made it here")
     else:
-        videoCapture(imageCapture)
+        video_capture(image_capture)
 
 
-diff = imageCapture()
+diff = image_capture()
 # videoCapture(diff)
 

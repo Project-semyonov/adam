@@ -3,6 +3,7 @@ import picamera
 import picamera.array
 import numpy as np
 
+
 class MyMotionDetector(picamera.array.PiMotionAnalysis):
     def analyse(self, a):
         a = np.sqrt(
@@ -14,6 +15,7 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
         if (a > 60).sum() > 10:
             print('Motion detected!')
 
+
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
     camera.framerate = 30
@@ -21,12 +23,12 @@ with picamera.PiCamera() as camera:
     try:
         while True:
             camera.start_recording(
-            stream, format='h264', 
-            motion_output=MyMotionDetector(camera)
+                stream, format='h264',
+                motion_output=MyMotionDetector(camera)
             )
-            #Keep recording for 10 seconds and only then
-            #write stream to disk
+            # Keep recording for 10 seconds and only then
+            # write stream to disk
             camera.wait_recording(10)
-            stream.copy_to('motion.h264')
+            camera.stop_recording()
     finally:
-        camera.stop_recording()
+        stream.copy_to('motion.h264')

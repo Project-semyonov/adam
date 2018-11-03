@@ -17,9 +17,16 @@ class MyMotionDetector(picamera.array.PiMotionAnalysis):
 with picamera.PiCamera() as camera:
     camera.resolution = (640, 480)
     camera.framerate = 30
-    camera.start_recording(
-        '/dev/null', format='h264',
-        motion_output=MyMotionDetector(camera)
-        )
-    camera.wait_recording(30)
-    camera.stop_recording()
+    stream = picamera.PiCameraCircularIO(camera, second = 20)
+    try:
+        while True:
+            camera.start_recording(
+            stream, format='h264', 
+            motion_output=MyMotionDetector(camera)
+            )
+            #Keep recording for 10 seconds and only then
+            #write stream to disk
+            camera.wait_recording(10)
+            stream.copy_to('motion.h264')
+    finally:
+        camera.stop_recording()

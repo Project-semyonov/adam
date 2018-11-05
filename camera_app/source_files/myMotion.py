@@ -85,6 +85,11 @@ class MyMotion():
                        ).clip(0, 255).astype(np.uint8)
 
         """
+        buffer = buff.readall()
+
+        diff = np.sqrt(np.square(buff['x'].astype(np.float)) +
+                       np.square(buff['y'].astype(np.float))
+                       ).clip(0, 255).astype(np.uint8)
 
         if (diff > 60).sum() > 10:
             return True

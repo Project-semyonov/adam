@@ -45,13 +45,16 @@ class MyMotion():
 
         self.camera.wait_recording(1)
         """
-        buff = picamera.PiCameraCircularIO(self.camera, seconds=1)
-
+        check = picamera.array.PiMotionArray(self.camera)
+        buff = picamera.PiCameraCircularIO(self.camera, seconds=5)
+        self.camera.start_recording(buff, format='h264', motion_output=check)
+        self.camera.wait_recording(5)
+        self.camera.stop_recording()
         # buff = picamera.PiCameraCircularIO(self.camera, seconds=1)
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
         # print(type(buff))
         # print ("hello {}".format(buff))
-        return buff
+        return check
         """
         stream.seek(0)
 
@@ -85,7 +88,7 @@ class MyMotion():
                        ).clip(0, 255).astype(np.uint8)
 
         """
-        buffer = buff.readall()
+        buffer = buff
 
         diff = np.sqrt(np.square(buffer['x'].astype(np.float)) +
                        np.square(buffer['y'].astype(np.float))
@@ -150,14 +153,14 @@ if __name__ == '__main__':
     # loop for a set number of times I've set to once
     while True:
         # Umm whatever the return is passed to check motion
-        buffer = cam.sample()
+        sample = cam.sample()
 
         # Confusing to have it written in the main of python
-        result = cam.motion(buffer)
+        result = cam.motion(sample)
 
         if result:
             # send the buffer with motion to add to the recording
-            cam.new_video(buffer)
+            cam.new_video(sample)
 
             answer = input(print("would you like to make another video? [Y/n"))
 

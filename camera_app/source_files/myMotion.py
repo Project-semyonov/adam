@@ -26,7 +26,7 @@ class MyMotion():
         self.height = 960
 
         # Roach's time stamp much more readable with one error?
-        self.timestamp = datetime.now().strftime('%d.%H.%s')
+        self.timestamp = datetime.now().strftime('%d.%H.%S')
 
     def sample(self):
         """
@@ -116,7 +116,7 @@ class MyMotion():
         :return: nothing? creates the video though
         """
         # filename = 'motion-video-{}.mjep'.format(self.timestamp)
-
+        self.timestamp = datetime.now().strftime('%d.%H.%S')
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 
         # self.camera.resolution = (self.width, self.height)

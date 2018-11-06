@@ -6,9 +6,9 @@ import PIL.ImageOps
 
 class TestCamera(unittest.TestCase):
     def __init__(self):
-        super().__init__()
+       #  super().__init__()
 
-        self.testcam = MyMotion(10)
+        self.testcam = MyMotion()
 
         self.buff = self.testcam.sample()
 

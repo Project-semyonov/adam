@@ -6,11 +6,11 @@ import PIL.ImageOps
 
 class TestCamera(unittest.TestCase):
     def __init__(self):
-       #  super().__init__()
+        super().__init__()
 
-        self.testcam = MyMotion()
+        self.test_cam = MyMotion(15)
 
-        self.buff = self.testcam.sample()
+        self.buff = self.test_cam.sample()
 
     def test_compare(self):
         """
@@ -39,7 +39,7 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        result = self.testcam.motion(self.buff)
+        result = self.test_cam.motion(self.buff)
 
         assert (result is None)
 
@@ -53,7 +53,7 @@ class TestCamera(unittest.TestCase):
 
         buff2 += self.buff
 
-        result = self.testcam.motion(buff2)
+        result = self.test_cam.motion(buff2)
 
         assert (result is True)
 

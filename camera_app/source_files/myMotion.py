@@ -26,7 +26,7 @@ class MyMotion():
         self.height = 960
 
         # Roach's time stamp much more readable with one error?
-        self.timestamp = datetime.now().strftime('%d.%H.%M%.%s')
+        self.timestamp = datetime.now().strftime('%d.%H.%s')
 
     def sample(self):
         """
@@ -47,14 +47,22 @@ class MyMotion():
         """
         check = picamera.array.PiMotionArray(self.camera)
         buff = picamera.PiCameraCircularIO(self.camera, seconds=5)
+        
+        self.camera.start_preview()
+        
         self.camera.start_recording(buff, format='h264', motion_output=check)
+        
         self.camera.wait_recording(5)
+        
         self.camera.stop_recording()
+        
         # buff = picamera.PiCameraCircularIO(self.camera, seconds=1)
         # TODO: have the camera capture 5/10 second buff then send it to be checked for motion?
         # print(type(buff))
         # print ("hello {}".format(buff))
-        return check
+        
+        return check, buff
+        
         """
         stream.seek(0)
 
@@ -88,13 +96,12 @@ class MyMotion():
                        ).clip(0, 255).astype(np.uint8)
 
         """
-        buffer = buff
+        for frame in range(buff.array.shape[0]):
+            diff = np.sqrt(np.square(buff.array[frame]['x'].astype(np.float)) +
+                            np.square(buff.array[frame]['y'].astype(np.float))
+                            ).clip(0, 255).astype(np.uint8)
 
-        diff = np.sqrt(np.square(buffer['x'].astype(np.float)) +
-                       np.square(buffer['y'].astype(np.float))
-                       ).clip(0, 255).astype(np.uint8)
-
-        if (diff > 60).sum() > 10:
+        if (diff > 0).sum() > 10:
             return True
 
         else:
@@ -112,11 +119,9 @@ class MyMotion():
 
         filename = 'motion-video-{}.h264'.format(self.timestamp)
 
-        self.camera.resolution = (self.width, self.height)
-
-        filename += buffer
+        # self.camera.resolution = (self.width, self.height)
         # TODO: add the buffer then start the recording
-
+        buffer.copy_to(filename)
         self.camera.start_recording(filename)
 
         self.camera.wait_recording(self.rec_len)
@@ -132,7 +137,7 @@ class MyMotion():
 
 
 if __name__ == '__main__':
-    vidLen = 10
+    vidLen = 15
     cam = MyMotion(vidLen)
 
     # might be the wrong question or totally unneeded
@@ -153,22 +158,27 @@ if __name__ == '__main__':
     # loop for a set number of times I've set to once
     while True:
         # Umm whatever the return is passed to check motion
-        sample = cam.sample()
+        sample, vid = cam.sample()
+        
+        print("sample {}".format(sample))
 
         # Confusing to have it written in the main of python
         result = cam.motion(sample)
+        
+        print("the result value {}".format(result))
 
         if result:
             # send the buffer with motion to add to the recording
-            cam.new_video(sample)
-
-            answer = input(print("would you like to make another video? [Y/n"))
-
+            cam.new_video(vid)
+            """
+            answer = input(print("would you like to make another video? [Y/n]"))
+            
             if answer[0].lower() is 'y':
                 continue
 
             else:
                 break
+                """
         else:
             continue
 

@@ -6,7 +6,7 @@ password.txt
 # ignore the test picures and videos
 *.jpg
 *.h264
-
+*.mp4
 # Executables
 *.exe
 *.out
@@ -15,7 +15,7 @@ password.txt
 # Metadata
 *.idea
 */.metadata/
-
+__pycache__
 */.recommenders/
 
 # Compiled class file

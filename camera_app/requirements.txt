@@ -1,5 +1,4 @@
 picamera
 Pillow
+numpy
 datetime
-io
-os

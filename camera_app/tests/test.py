@@ -4,13 +4,12 @@ from ..source_files.myMotion import MyMotion
 import PIL.ImageOps
 
 
-class TestCamera(unittest.TestCase):
-    def __init__(self):
-        super().__init__()
+class Test_Camera(unittest.TestCase):
+    def setUp(self):
 
         self.test_cam = MyMotion(15)
 
-        self.buff = self.test_cam.sample()
+        self.sample, self.buff = self.test_cam.sample()
 
     def test_compare(self):
         """

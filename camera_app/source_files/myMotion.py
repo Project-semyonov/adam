@@ -16,7 +16,7 @@ class MyMotion:
         self.camera.framerate = 32
 
         # The amount of different pixels allowed
-        self.movement = 0
+        self.movement = 60
 
         # total number of pixels
         self.pixels = 100
@@ -25,6 +25,10 @@ class MyMotion:
         self.width = 1280
         self.height = 960
 
+        self.camera.resolution = (self.width, self.height)
+
+        self.camera.rotation = 180
+        
         # Roach's time stamp much more readable with one error?
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
@@ -35,13 +39,14 @@ class MyMotion:
 
         :return: returns the video of the buffer and the motion array data as a buffer
         """
-        self.camera.resolution = (self.width, self.height)
+
+        self.camera.start_preview()
+        
+        time.sleep(.25)
 
         check = picamera.array.PiMotionArray(self.camera)
 
         buff = picamera.PiCameraCircularIO(self.camera, seconds=5)
-
-        self.camera.start_preview()
 
         self.camera.start_recording(buff, format='h264', motion_output=check)
 
@@ -64,7 +69,9 @@ class MyMotion:
                            np.square(buff.array[frame]['y'].astype(np.float))
                            ).clip(0, 255).astype(np.uint8)
 
-            if (diff > self.movement).sum() > 10:
+            print("the diff of motion {}".format((diff > self.movement).sum()))
+            
+            if (diff > self.movement).sum() > self.movement / (self.movement / 5):
                 return True
 
             else:
@@ -122,8 +129,6 @@ if __name__ == '__main__':
     while True:
         # Umm whatever the return is passed to check motion
         sample, vid = cam.sample()
-
-        print("sample {}".format(sample))
 
         # Confusing to have it written in the main of python
         result = cam.motion(sample)

@@ -1,4 +1,4 @@
-# import io
+import io
 import picamera
 import picamera.array
 import time
@@ -7,7 +7,7 @@ import numpy as np
 
 
 class MyMotion:
-    def __init__(self, time):
+    def __init__(self, time, pause):
         # Creating the pi camera instance
         self.camera = picamera.PiCamera()
 
@@ -28,6 +28,8 @@ class MyMotion:
         self.camera.resolution = (self.width, self.height)
 
         self.camera.rotation = 180
+
+        self.sleep = pause
         
         # Roach's time stamp much more readable with one error?
         self.timestamp = datetime.now().strftime('%d.%H.%S')
@@ -42,7 +44,7 @@ class MyMotion:
 
         self.camera.start_preview()
         
-        time.sleep(.25)
+        time.sleep(self.sleep)
 
         check = picamera.array.PiMotionArray(self.camera)
 
@@ -91,8 +93,8 @@ class MyMotion:
         # filename = 'motion-video-{}.mjep'.format(self.timestamp)
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
-        filename = 'motion-video-{}.h264'.format(self.timestamp)
-
+        filename = "/root/videos/motion-video-{}.h264".format(self.timestamp)
+        
         buffer.copy_to(filename)
 
         self.camera.start_recording(filename)
@@ -108,7 +110,8 @@ class MyMotion:
 
 if __name__ == '__main__':
     vidLen = 15
-    cam = MyMotion(vidLen)
+    warmUp = .25
+    cam = MyMotion(vidLen, warmUp)
 
     # might be the wrong question or totally unneeded
     '''
@@ -138,7 +141,8 @@ if __name__ == '__main__':
         if result:
             # send the buffer with motion to add to the recording
             cam.new_video(vid)
-
+            
+            """
             answer = input(print("would you like to make another video? [Y/n]"))
 
             if answer[0].lower() is 'y':
@@ -146,11 +150,12 @@ if __name__ == '__main__':
 
             else:
                 break
-
+            """
         else:
             continue
 
     print("Created the above video shutting down")
 
     exit(0)
+
 

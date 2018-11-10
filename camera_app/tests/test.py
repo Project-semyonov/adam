@@ -4,14 +4,15 @@ from ..source_files.myMotion import MyMotion
 import PIL.ImageOps
 
 
-class Test_Camera(unittest.TestCase):
+class TestCamera(unittest.TestCase):
     def setUp(self):
 
-        self.test_cam = MyMotion(15)
+        self.test_cam = MyMotion(15, .25)
 
         self.sample, self.buff = self.test_cam.sample()
+        self.test_cam.camera.close()
 
-    def test_compare(self):
+    def test_no_compare(self):
         """
         I think the actual flow of the code should be improved
         this just looks wrong trying to write tests for it
@@ -32,7 +33,7 @@ class Test_Camera(unittest.TestCase):
         # Fake motion by the inversion of the image
         assert (buff2 != self.buff)
 
-    def test_compare_no_motion(self):
+    def test_no_motion_compare(self):
         """
         Test that there is a None return when no motion is detected
         :return:
@@ -42,7 +43,7 @@ class Test_Camera(unittest.TestCase):
 
         assert (result is None)
 
-    def test_compare_fake_motion(self):
+    def test_fake_motion_compare(self):
         """
         Test that motion will return true
         :return:

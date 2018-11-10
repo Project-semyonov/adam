@@ -5,6 +5,15 @@ import PIL.ImageOps
 
 
 class TestCamera(unittest.TestCase):
+    def setUp(self):
+        self.cam = MyMotion(5, .25)
+
+        self.buff, self.vid = self.cam.sample()
+
+    def tearDown(self):
+        self.cam.camera.stop_preview()
+        self.cam.camera.close()
+
     def test_no_compare(self):
         """
         I think the actual flow of the code should be improved
@@ -12,13 +21,7 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        cam = MyMotion(5, .25)
-
-        buff1, vid = cam.sample()
-
-        assert (buff1 == buff1)
-
-        cam.camera.close()
+        assert (self.buff == self.buff)
 
     def test_fake_motion(self):
         """
@@ -27,16 +30,10 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        cam = MyMotion(5, .25)
-
-        buff1, vid = cam.sample()
-
-        buff2 = PIL.ImageOps.invert(buff1)
+        buff2 = PIL.ImageOps.invert(self.buff)
 
         # Fake motion by the inversion of the image
-        assert (buff2 != buff1)
-
-        cam.camera.close()
+        assert (buff2 != self.buff)
 
     def test_no_motion_compare(self):
         """
@@ -44,15 +41,9 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        cam = MyMotion(5, .25)
-
-        buff1, vid = cam.sample()
-
-        result = cam.motion(buff1)
+        result = self.cam.motion(self.buff)
 
         assert (result is None)
-
-        cam.camera.close()
 
     def test_fake_motion_compare(self):
         """
@@ -60,19 +51,13 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        cam = MyMotion(5, .25)
+        buff2 = PIL.ImageOps.invert(self.buff)
 
-        buff1, vid = cam.sample()
+        buff2 += self.buff
 
-        buff2 = PIL.ImageOps.invert(buff1)
-
-        buff2 += buff1
-
-        result = cam.motion(buff2)
+        result = self.cam.motion(buff2)
 
         assert (result is True)
-
-        cam.camera.close()
 
     def test_recording(self):
         """
@@ -84,4 +69,3 @@ class TestCamera(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

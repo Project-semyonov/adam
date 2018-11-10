@@ -1,12 +1,11 @@
 import unittest
 from ..source_files.myMotion import MyMotion
-# from PIL import Image
-import PIL.ImageOps
+import numpy as np
 
 
 class TestCamera(unittest.TestCase):
     def setUp(self):
-        self.cam = MyMotion(5, .25)
+        self.cam = MyMotion(5, 2)
 
         self.buff, self.vid = self.cam.sample()
 
@@ -29,11 +28,10 @@ class TestCamera(unittest.TestCase):
         we rewrite it
         :return:
         """
-
-        buff2 = PIL.ImageOps.invert(self.buff)
+        buff2 = np.array([])
 
         # Fake motion by the inversion of the image
-        assert (buff2 != self.buff)
+        assert (buff2 != self.buff.array)
 
     def test_no_motion_compare(self):
         """
@@ -50,14 +48,20 @@ class TestCamera(unittest.TestCase):
         Test that motion will return true
         :return:
         """
+        self.cam.camera.stop_preview()
+        self.cam.camera.close()
+        cam = MyMotion(5, .25)
 
-        buff2 = PIL.ImageOps.invert(self.buff)
-
-        buff2 += self.buff
+        buff2, vid2 = cam.sample()
 
         result = self.cam.motion(buff2)
 
         assert (result is True)
+
+        cam.camera.stop_preview()
+        cam.camera.close()
+        self.cam = MyMotion(5, 2)
+        self.buff, self.vid = self.cam.sample()
 
     def test_recording(self):
         """

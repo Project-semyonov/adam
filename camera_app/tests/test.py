@@ -5,13 +5,6 @@ import PIL.ImageOps
 
 
 class TestCamera(unittest.TestCase):
-    def setUp(self):
-
-        self.test_cam = MyMotion(15, .25)
-
-        self.sample, self.buff = self.test_cam.sample()
-        self.test_cam.camera.close()
-
     def test_no_compare(self):
         """
         I think the actual flow of the code should be improved
@@ -19,7 +12,13 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        assert (self.buff == self.buff)
+        cam = MyMotion(5, .25)
+
+        buff1, vid = cam.sample()
+
+        assert (buff1 == buff1)
+
+        cam.camera.close()
 
     def test_fake_motion(self):
         """
@@ -28,10 +27,16 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        buff2 = PIL.ImageOps.invert(self.buff)
+        cam = MyMotion(5, .25)
+
+        buff1, vid = cam.sample()
+
+        buff2 = PIL.ImageOps.invert(buff1)
 
         # Fake motion by the inversion of the image
-        assert (buff2 != self.buff)
+        assert (buff2 != buff1)
+
+        cam.camera.close()
 
     def test_no_motion_compare(self):
         """
@@ -39,9 +44,15 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        result = self.test_cam.motion(self.buff)
+        cam = MyMotion(5, .25)
+
+        buff1, vid = cam.sample()
+
+        result = cam.motion(buff1)
 
         assert (result is None)
+
+        cam.camera.close()
 
     def test_fake_motion_compare(self):
         """
@@ -49,13 +60,19 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
-        buff2 = PIL.ImageOps.invert(self.buff)
+        cam = MyMotion(5, .25)
 
-        buff2 += self.buff
+        buff1, vid = cam.sample()
 
-        result = self.test_cam.motion(buff2)
+        buff2 = PIL.ImageOps.invert(buff1)
+
+        buff2 += buff1
+
+        result = cam.motion(buff2)
 
         assert (result is True)
+
+        cam.camera.close()
 
     def test_recording(self):
         """
@@ -67,3 +84,4 @@ class TestCamera(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

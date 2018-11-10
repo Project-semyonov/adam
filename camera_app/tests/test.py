@@ -70,6 +70,28 @@ class TestCamera(unittest.TestCase):
         :return:
         """
 
+        self.cam.camera.stop_preview()
+        self.cam.camera.close()
+        
+        cam = MyMotion(5, .25)
+
+        buff, vid = cam.sample()
+
+        result = cam.motion(buff)
+
+        cam.new_video(vid)
+
+        assert(open("motion-video-{}.h264".format(cam.timestamp), 'r'))
+
+        cam.camera.stop_preview()
+        cam.camera.close()
+        self.cam = MyMotion(5, .25)
+        self.buff, self.vid = self.cam.sample()
+
+
+
+
+
 
 if __name__ == '__main__':
     unittest.main()

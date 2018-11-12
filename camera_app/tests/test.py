@@ -5,7 +5,7 @@ import numpy as np
 
 class TestCamera(unittest.TestCase):
     def setUp(self):
-        self.cam = MyMotion(5, 2)
+        self.cam = MyMotion(5, .35)
 
         self.buff, self.vid = self.cam.sample()
 
@@ -59,8 +59,11 @@ class TestCamera(unittest.TestCase):
         assert (result is True)
 
         cam.camera.stop_preview()
+        
         cam.camera.close()
+        
         self.cam = MyMotion(5, 2)
+        
         self.buff, self.vid = self.cam.sample()
 
     def test_recording(self):
@@ -81,17 +84,18 @@ class TestCamera(unittest.TestCase):
 
         cam.new_video(vid)
 
-        assert(open("motion-video-{}.h264".format(cam.timestamp), 'r'))
+        assert(open("/root/videos/motion-video-{}.h264".format(cam.timestamp), 'r'))
 
         cam.camera.stop_preview()
+        
         cam.camera.close()
+        
         self.cam = MyMotion(5, .25)
+        
         self.buff, self.vid = self.cam.sample()
-
-
-
-
 
 
 if __name__ == '__main__':
     unittest.main()
+
+

@@ -73,7 +73,7 @@ class MyMotion:
 
             print("the diff of motion {}".format((diff > self.movement).sum()))
             
-            if (diff > self.movement).sum() > self.movement / (self.movement / 5):
+            if (diff > self.movement).sum() > self.movement / (self.movement / 7):
                 return True
 
             else:
@@ -110,7 +110,7 @@ class MyMotion:
 
 if __name__ == '__main__':
     vidLen = 15
-    warmUp = .25
+    warmUp = .35
     cam = MyMotion(vidLen, warmUp)
 
     # might be the wrong question or totally unneeded

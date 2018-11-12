@@ -7,6 +7,7 @@ password.txt
 *.jpg
 *.h264
 *.mp4
+
 # Executables
 *.exe
 *.out
@@ -18,8 +19,13 @@ password.txt
 __pycache__
 */.recommenders/
 
+# ignore the setup folders and files
+/dist/
+*.egg-info
+
 # Compiled class file
 *.class
+*.pyc
 *.classpath
 *.project
 */.settings/

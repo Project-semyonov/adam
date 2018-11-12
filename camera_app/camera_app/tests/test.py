@@ -83,8 +83,10 @@ class TestCamera(unittest.TestCase):
         result = cam.motion(buff)
 
         cam.new_video(vid)
-
-        assert(open("/root/videos/motion-video-{}.h264".format(cam.timestamp), 'r'))
+        test = open("motion-video-{}.h264".format(cam.timestamp), 'r') 
+        assert(test)
+        
+        test.close()
 
         cam.camera.stop_preview()
         

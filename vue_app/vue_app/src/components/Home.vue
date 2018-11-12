@@ -1,14 +1,13 @@
 <template>
   <div class="homepage-container">
     <h1>Home</h1>
-    <p> Project Semyonov is in your house! </p>
-    <h1>Temp Sensor</h1>
-    <div class="temp-table">
+    <div class="home-temp-table">
       <div class="col-lg-4">
         <table class="table table-hover">
           <thead>
             <tr>
               <div class="temp-table-header">
+              <h3>Temp Sensor</h3>
               <th scope="col">Time</th>
               <th scope="col">Temp</th>
               <th scope="col">
@@ -30,9 +29,7 @@
       </div>
     </div>
   </div>
-  
 </template>
-
 
 <script>
 import axios from 'axios'

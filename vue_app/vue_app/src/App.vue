@@ -1,8 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="header">
+      <div class="home-button">
+        <router-link to="/home" tag="button" class="btn btn-danger">Homepage</router-link>
+      </div>
+      <router-link to="/camera" tag="button" class="btn btn-outline-warning"
+        >Camera</router-link>
+      <router-link to="/temp" tag="button" class="btn btn-outline-warning"
+        >Temp Sensor</router-link>
+      <div class="github-button">
+        <a href="https://github.com/Project-semyonov/adam" tag="button"
+        class="btn btn-outline-success">Github Repo</a>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -20,6 +29,13 @@
 }
 .temp-table{
   text-align: center;
+  table-layout: fixed;
+  margin: auto;
+  width: 20%;
+  color: azure;
+}
+.home-temp-table-header{
+  text-align: left;
   table-layout: fixed;
   margin: auto;
   width: 20%;
@@ -46,7 +62,7 @@ html,body, #app{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background:url('assets/img/home-bg.jpg');
+  background:url('assets/home-bg.jpg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

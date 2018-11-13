@@ -93,6 +93,10 @@ class MyMotion:
         # filename = 'motion-video-{}.mjep'.format(self.timestamp)
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
+        # for the docker contaiener
+        #filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
+        
+        # used for testing swap between the two 
         filename = "motion-video-{}.h264".format(self.timestamp)
         
         buffer.copy_to(filename)

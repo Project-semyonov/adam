@@ -31,7 +31,7 @@ class TestCamera1(unittest.TestCase):
         assert (self.cam.buffer == self.cam.buffer)
         assert (self.cam.video == self.cam.video)
 
-    def test_fake_motion(self):
+    def test_empty_motion(self):
         """
         Pretty straight forward I'm thinking the tests will work
         we rewrite it
@@ -39,7 +39,7 @@ class TestCamera1(unittest.TestCase):
         """
         buff2 = np.array([])
 
-        # Fake motion by the inversion of the image
+        # empty motion by the inversion of the image
         assert (buff2 is not self.cam.buffer.array)
 
     def test_no_motion_compare(self):

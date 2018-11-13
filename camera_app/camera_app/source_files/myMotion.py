@@ -12,6 +12,10 @@ class MyMotion:
         self.buffer = picamera.array.PiMotionArray(self.camera)
         self.video = picamera.PiCameraCircularIO(self.camera, seconds=5)
 
+        self.camera.start_preview()
+
+        time.sleep(pause)
+
         self.rec_len = length
 
         # The magic number that detects motion
@@ -25,8 +29,6 @@ class MyMotion:
         self.camera.resolution = (self.width, self.height)
         self.camera.rotation = 180
 
-        self.sleep = pause
-
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
     def sample(self):
@@ -34,10 +36,6 @@ class MyMotion:
         Takes a sample of 5 seconds continually overwriting itself until the buffer called
         check which is an array data information being analysed for movement in the frame
         """
-
-        self.camera.start_preview()
-        
-        time.sleep(self.sleep)
 
         self.camera.start_recording(self.video, format='h264', motion_output=self.buffer)
 

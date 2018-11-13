@@ -90,15 +90,16 @@ class MyMotion:
         :param buffer: the 5 seconds with motion
         :return: True when video successfully taken
         """
+
         # filename = 'motion-video-{}.mjep'.format(self.timestamp)
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
-        # for the docker contaiener
-        #filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
-        
-        # used for testing swap between the two 
+        # for the docker container
+        # filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
+
+        # used for testing swap between the two
         filename = "motion-video-{}.h264".format(self.timestamp)
-        
+
         buffer.copy_to(filename)
 
         self.camera.start_recording(filename)

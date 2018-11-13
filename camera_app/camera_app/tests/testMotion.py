@@ -20,7 +20,7 @@ class TestCamera2(unittest.TestCase):
 
         result = self.cam.motion(self.buff)
 
-        assert (result is True)
+        assert result
 
     def test_recording(self):
         """
@@ -42,7 +42,7 @@ class TestCamera2(unittest.TestCase):
             test.close()
 
         else:
-            assert False
+            pass
 
 
 if __name__ == '__main__':

@@ -1,5 +1,3 @@
 [run]
 source =
-	camera_app.tests.testStatic
-	camera_app.tests.testMotion
 	camera_app.source_files.myMotion

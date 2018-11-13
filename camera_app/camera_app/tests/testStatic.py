@@ -47,9 +47,9 @@ class TestCamera1(unittest.TestCase):
         :return:
         """
 
-        result = self.cam.motion(self.buff)
+        self.result = self.cam.motion(self.buff)
 
-        assert (result is None)
+        assert (self.result is None)
 
 
 if __name__ == '__main__':

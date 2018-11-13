@@ -11,7 +11,6 @@ class TestCamera1(unittest.TestCase):
         :return:
         """
         self.cam = MyMotion(5, .35)
-        self.buff, self.vid = self.cam.sample()
 
     def tearDown(self):
         """
@@ -21,14 +20,15 @@ class TestCamera1(unittest.TestCase):
         self.cam.camera.stop_preview()
         self.cam.camera.close()
 
-    def test_no_compare(self):
+    def test_types(self):
         """
         I think the actual flow of the code should be improved
         this just looks wrong trying to write tests for it
         :return:
         """
 
-        assert (self.buff == self.buff)
+        assert (self.cam.buffer == self.cam.buffer)
+        assert (self.cam.video == self.cam.video)
 
     def test_fake_motion(self):
         """
@@ -39,7 +39,7 @@ class TestCamera1(unittest.TestCase):
         buff2 = np.array([])
 
         # Fake motion by the inversion of the image
-        assert (buff2 is not self.buff.array)
+        assert (buff2 is not self.cam.buffer.array)
 
     def test_no_motion_compare(self):
         """
@@ -47,12 +47,11 @@ class TestCamera1(unittest.TestCase):
         :return:
         """
 
-        result = self.cam.motion(self.buff)
+        result = self.cam.motion()
 
         assert (result is None)
 
 
 if __name__ == '__main__':
     unittest.main()
-
 

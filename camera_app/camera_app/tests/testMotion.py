@@ -6,7 +6,6 @@ from ..source_files.myMotion import MyMotion
 class TestCamera2(unittest.TestCase):
     def setUp(self):
         self.cam = MyMotion(5, .2)
-        self.buff, self.vid = self.cam.sample()
 
     def tearDown(self):
         self.cam.camera.stop_preview()
@@ -18,7 +17,7 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
-        result = self.cam.motion(self.buff)
+        result = self.cam.motion()
 
         assert result
 
@@ -29,11 +28,11 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
-        result = self.cam.motion(self.buff)
+        result = self.cam.motion()
 
         if result:
 
-            self.cam.new_video(self.vid)
+            self.cam.new_video()
 
             test = open("motion-video-{}.h264".format(self.cam.timestamp), 'r')
 

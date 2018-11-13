@@ -5,7 +5,7 @@ from ..source_files.myMotion import MyMotion
 
 class TestCamera2(unittest.TestCase):
     def setUp(self):
-        self.cam = MyMotion(5, .25)
+        self.cam = MyMotion(5, .2)
         self.buff, self.vid = self.cam.sample()
 
     def tearDown(self):
@@ -18,9 +18,7 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
-        buff2, vid2 = self.cam.sample()
-
-        result = self.cam.motion(buff2)
+        result = self.cam.motion(self.buff)
 
         assert (result is True)
 

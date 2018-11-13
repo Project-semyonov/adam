@@ -71,7 +71,7 @@ class MyMotion:
                            np.square(buff.array[frame]['y'].astype(np.float))
                            ).clip(0, 255).astype(np.uint8)
 
-            print("the diff of motion {}".format((diff > self.movement).sum()))
+            # print("the diff of motion {}".format((diff > self.movement).sum()))
             
             if (diff > self.movement).sum() > self.movement / (self.movement / 7):
                 return True
@@ -93,7 +93,7 @@ class MyMotion:
         # filename = 'motion-video-{}.mjep'.format(self.timestamp)
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
-        filename = "/root/videos/motion-video-{}.h264".format(self.timestamp)
+        filename = "motion-video-{}.h264".format(self.timestamp)
         
         buffer.copy_to(filename)
 

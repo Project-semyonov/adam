@@ -18,7 +18,7 @@ password.txt
 */.metadata/
 __pycache__
 */.recommenders/
-
+.coverage
 # ignore the setup folders and files
 /dist/
 *.egg-info

@@ -39,7 +39,7 @@ class TestCamera1(unittest.TestCase):
         buff2 = np.array([])
 
         # Fake motion by the inversion of the image
-        assert (buff2 != self.buff.array)
+        assert (buff2 is not self.buff.array)
 
     def test_no_motion_compare(self):
         """

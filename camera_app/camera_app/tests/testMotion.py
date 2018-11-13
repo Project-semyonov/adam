@@ -6,6 +6,7 @@ from ..source_files.myMotion import MyMotion
 class TestCamera2(unittest.TestCase):
     def setUp(self):
         self.cam = MyMotion(5, .2)
+        self.cam.sample()
 
     def tearDown(self):
         self.cam.camera.stop_preview()
@@ -28,6 +29,7 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
+        self.cam.sample()
         result = self.cam.motion()
 
         if result:

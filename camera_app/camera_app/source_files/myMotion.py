@@ -116,7 +116,7 @@ if __name__ == '__main__':
 
     except KeyboardInterrupt:
         cam.camera.stop_preview()
-        cam.camera.stop()
+        cam.camera.close()
 
         print("Created the above video shutting down")
         exit(0)

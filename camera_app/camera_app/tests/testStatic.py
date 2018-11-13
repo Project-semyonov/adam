@@ -11,6 +11,7 @@ class TestCamera1(unittest.TestCase):
         :return:
         """
         self.cam = MyMotion(5, .35)
+        self.cam.sample()
 
     def tearDown(self):
         """

@@ -8,4 +8,4 @@ COPY / /root/
 WORKDIR /root/
 RUN pip3 install -r requirements.txt
 RUN pip3 install -e .
-CMD python3 source_files/myMotion.py
+CMD python3 camera_app/source_files/myMotion.py

@@ -10,7 +10,7 @@ class TestCamera1(unittest.TestCase):
         recorded by the camera
         :return:
         """
-        self.cam = MyMotion(5, .35)
+        self.cam = MyMotion(5, .3)
         self.cam.sample()
 
     def tearDown(self):

@@ -96,7 +96,7 @@ class MyMotion:
 
 if __name__ == '__main__':
     vidLen = 15
-    warmUp = .35
+    warmUp = .3
     cam = MyMotion(vidLen, warmUp)
     try:
         while True:

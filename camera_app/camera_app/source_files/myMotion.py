@@ -29,7 +29,6 @@ class MyMotion:
         self.camera.rotation = 180
 
         self.timestamp = datetime.now().strftime('%d.%H.%S')
-
         self.result = None
 
     def run(self):
@@ -62,9 +61,7 @@ class MyMotion:
         """
 
         self.camera.start_recording(self.video, format='h264', motion_output=self.buffer)
-
         self.camera.wait_recording(5)
-
         self.camera.stop_recording()
 
     def motion(self):
@@ -80,7 +77,6 @@ class MyMotion:
                            ).clip(0, 255).astype(np.uint8)
 
             # print("the diff of motion {}".format((diff > self.movement).sum()))
-            
             if (diff > self.movement).sum() > self.movement / (self.movement / 7):
                 self.result = True
                 return
@@ -106,11 +102,8 @@ class MyMotion:
         filename = "motion-video-{}.h264".format(self.timestamp)
 
         self.video.copy_to(filename)
-
         self.camera.start_recording(filename)
-
         self.camera.wait_recording(self.rec_len)
-
         self.camera.stop_recording()
 
         print("Captured {}".format(filename))
@@ -121,4 +114,3 @@ class MyMotion:
 if __name__ == '__main__':
     cam = MyMotion(.3)
     cam.run()
-

@@ -31,7 +31,6 @@ class TestCamera2(unittest.TestCase):
 
         self.cam.motion()
 
-
         assert self.cam.result
 
         self.cam.new_video()
@@ -43,7 +42,5 @@ class TestCamera2(unittest.TestCase):
         test.close()
 
 
-
 if __name__ == '__main__':
     unittest.main()
-

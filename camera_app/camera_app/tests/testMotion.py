@@ -7,6 +7,7 @@ class TestCamera2(unittest.TestCase):
         self.cam = MyMotion(.2)
         self.cam.rec_len = 5
         self.cam.sample()
+        self.cam.motion()
 
     def tearDown(self):
         self.cam.camera.stop_preview()
@@ -18,8 +19,6 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
-        self.cam.motion()
-
         assert self.cam.result
 
     def test_recording(self):
@@ -28,8 +27,6 @@ class TestCamera2(unittest.TestCase):
         but idk how to yet
         :return:
         """
-
-        self.cam.motion()
 
         assert self.cam.result
 

@@ -1,3 +1,6 @@
 [run]
 source =
 	camera_app.source_files.myMotion
+
+[report]
+exclude_lines = def run

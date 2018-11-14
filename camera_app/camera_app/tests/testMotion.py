@@ -29,20 +29,19 @@ class TestCamera2(unittest.TestCase):
         :return:
         """
 
-        result = self.cam.motion()
+        self.cam.motion()
 
-        if result:
 
-            self.cam.new_video()
+        assert self.cam.result
 
-            test = open("motion-video-{}.h264".format(self.cam.timestamp), 'r')
+        self.cam.new_video()
 
-            assert test
+        test = open("motion-video-{}.h264".format(self.cam.timestamp), 'r')
 
-            test.close()
+        assert test
 
-        else:
-            assert False
+        test.close()
+
 
 
 if __name__ == '__main__':

@@ -97,9 +97,8 @@ class MyMotion:
         :return: True when video successfully taken
         """
 
-        # filename = 'motion-video-{}.mjep'.format(self.timestamp)
         self.timestamp = datetime.now().strftime('%d.%H.%S')
-
+        # filename = 'motion-video-{}.mjpeg'.format(self.timestamp)
         # for the docker container
         # filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
 

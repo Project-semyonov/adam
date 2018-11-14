@@ -1,33 +1,22 @@
 import unittest
 from ..source_files.myMotion import MyMotion
-# import numpy as np
 
 
 class TestCamera2(unittest.TestCase):
     def setUp(self):
         self.cam = MyMotion(.2)
         self.cam.rec_len = 5
+        self.cam.sample()
 
     def tearDown(self):
         self.cam.camera.stop_preview()
         self.cam.camera.close()
-
-    def test_runner(self):
-        self.cam.run()
-
-        assert self.cam.result
-        
-        temp = open('motion-video-{}.h264'.format(self.cam.timestamp))
-
-        assert temp
-        temp.close()
 
     def test_fake_motion_compare(self):
         """
         Test that motion will return true
         :return:
         """
-        self.cam.sample()
 
         self.cam.motion()
 
@@ -53,7 +42,7 @@ class TestCamera2(unittest.TestCase):
             test.close()
 
         else:
-            pass
+            assert False
 
 
 if __name__ == '__main__':

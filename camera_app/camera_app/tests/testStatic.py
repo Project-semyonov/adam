@@ -12,6 +12,7 @@ class TestCamera1(unittest.TestCase):
         """
         self.cam = MyMotion(.3)
         self.cam.rec_len = 5
+        self.cam.sample()
 
     def tearDown(self):
         """
@@ -21,18 +22,12 @@ class TestCamera1(unittest.TestCase):
         self.cam.camera.stop_preview()
         self.cam.camera.close()
 
-    def test_runner(self):
-        self.cam.run()
-
-        assert (self.cam.result is None)
-
     def test_types(self):
         """
         I think the actual flow of the code should be improved
         this just looks wrong trying to write tests for it
         :return:
         """
-        self.cam.sample()
 
         assert (self.cam.buffer == self.cam.buffer)
         assert (self.cam.video == self.cam.video)
@@ -45,8 +40,6 @@ class TestCamera1(unittest.TestCase):
         """
         buff2 = np.array([])
 
-        self.cam.sample()
-
         # empty motion by the inversion of the image
         assert (buff2 is not self.cam.buffer.array)
 
@@ -55,7 +48,6 @@ class TestCamera1(unittest.TestCase):
         Test that there is a None return when no motion is detected
         :return:
         """
-        self.cam.sample()
 
         self.cam.motion()
 

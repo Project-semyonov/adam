@@ -1,4 +1,3 @@
-import io
 import picamera
 import picamera.array
 import time
@@ -41,16 +40,11 @@ class MyMotion:
         try:
             while True:
                 self.sample()
-
                 self.motion()
-
                 # print("the result value {}".format(result))
-
                 if self.result:
                     self.new_video()
-
                     self.result = None
-
                 else:
                     continue
 
@@ -93,7 +87,7 @@ class MyMotion:
 
             else:
                 continue
-        return None
+        return
 
     def new_video(self):
         """

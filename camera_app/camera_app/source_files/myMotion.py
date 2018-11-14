@@ -7,7 +7,7 @@ import numpy as np
 
 
 class MyMotion:
-    def __init__(self, length, pause):
+    def __init__(self, pause):
         self.camera = picamera.PiCamera()
         self.buffer = picamera.array.PiMotionArray(self.camera)
         self.video = picamera.PiCameraCircularIO(self.camera, seconds=5)
@@ -16,7 +16,7 @@ class MyMotion:
 
         time.sleep(pause)
 
-        self.rec_len = length
+        self.rec_len = 15
 
         # The magic number that detects motion
         self.movement = 60
@@ -30,6 +30,32 @@ class MyMotion:
         self.camera.rotation = 180
 
         self.timestamp = datetime.now().strftime('%d.%H.%S')
+
+    def run(self):
+        """
+        Handler for the main program so its outside the main
+        :return:
+        """
+        try:
+            while True:
+                self.sample()
+
+                result = self.motion()
+
+                # print("the result value {}".format(result))
+
+                if result:
+                    self.new_video()
+
+                else:
+                    continue
+
+        except KeyboardInterrupt:
+            self.camera.stop_preview()
+            self.camera.close()
+
+            print("\nCreated the above video shutting down")
+            exit(0)
 
     def sample(self):
         """
@@ -95,27 +121,6 @@ class MyMotion:
 
 
 if __name__ == '__main__':
-    vidLen = 15
-    warmUp = .3
-    cam = MyMotion(vidLen, warmUp)
-    try:
-        while True:
-            cam.sample()
-
-            result = cam.motion()
-
-            # print("the result value {}".format(result))
-
-            if result:
-                cam.new_video()
-
-            else:
-                continue
-
-    except KeyboardInterrupt:
-        cam.camera.stop_preview()
-        cam.camera.close()
-
-        print("Created the above video shutting down")
-        exit(0)
+    cam = MyMotion(.3)
+    cam.run()
 

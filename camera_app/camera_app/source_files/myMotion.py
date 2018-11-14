@@ -31,6 +31,8 @@ class MyMotion:
 
         self.timestamp = datetime.now().strftime('%d.%H.%S')
 
+        self.result = None
+
     def run(self):
         """
         Handler for the main program so its outside the main
@@ -40,12 +42,14 @@ class MyMotion:
             while True:
                 self.sample()
 
-                result = self.motion()
+                self.motion()
 
                 # print("the result value {}".format(result))
 
-                if result:
+                if self.result:
                     self.new_video()
+
+                    self.result = None
 
                 else:
                     continue
@@ -84,7 +88,8 @@ class MyMotion:
             # print("the diff of motion {}".format((diff > self.movement).sum()))
             
             if (diff > self.movement).sum() > self.movement / (self.movement / 7):
-                return True
+                self.result = True
+                return
 
             else:
                 continue

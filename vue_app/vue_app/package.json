@@ -13,6 +13,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.1",
     "time-stamp": "^2.2.0",
+    "video.js": "^7.3.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"
   },

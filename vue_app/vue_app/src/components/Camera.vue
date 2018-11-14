@@ -2,7 +2,7 @@
   <div class="video-player">
     <div class="video-container">
       <video width="720" height="540" controls>
-      <source src="../assets/test.mp4" type="video/mp4">
+      <source src="this.activeVideo.videoSource" type="video/mp4">
       </video>
       <h3>{{this.activeVideo.title}}</h3>
     </div>
@@ -22,15 +22,16 @@ let videos = [
     id: 1,
     title: "MP4 Test",
     thumbnail: "https://assets.pernod-ricard.com/uk/media_images/test.jpg",
-    videoSource: "../assets/test.mp4",
+    videoSource: "https://www.youtube.com/embed/KB4_WIPE7vo",
   },
-  {
-    id: 2,
-    title: "MP4 Test 2",
-    thumbnail: "https://assets.pernod-ricard.com/uk/media_images/test.jpg",
-    videoSource: "../assets/test.mp4",
-  }
+  // {
+  //   id: 2,
+  //   title: "ToyStory MP4",
+  //   thumbnail: "https://assets.pernod-ricard.com/uk/media_images/test.jpg",
+  //   videoSource: "../assets/toystory.mp4",
+  // }
   ];
+
 
 export default {
   name: 'VideoPlayer',
@@ -45,7 +46,8 @@ export default {
       //SET VIDEO AS ACTIVE VIDEO
       this.activeVideo = video;
     }
-  }
+  },
+  
 }
 </script>
 

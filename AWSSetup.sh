@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p 'Username: ' uservar
-#read -sp 'Password' passvar
+read -sp 'Password' passvar
 echo
 echo Your username $uservar will be sent to the server to be created.
 

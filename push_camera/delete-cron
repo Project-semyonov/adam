@@ -1,2 +1,2 @@
-5 * * * * root rm ~/root/Videos/*
-
+*/1     *       *       *       *       rm ~/Videos/*.h264
+*/1     *       *       *       *       echo "smoke is coming out of me"

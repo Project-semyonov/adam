@@ -3,5 +3,5 @@ COPY . /root/
 WORKDIR /root/
 ENTRYPOINT sh
 RUN crontab delete-cron
-RUN crond
+CMD crontab -l
 CMD crond

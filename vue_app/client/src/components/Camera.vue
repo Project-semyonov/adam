@@ -1,9 +1,13 @@
 <template>
   <div class="video-player">
     <div class="video-container">
-      <video ref="videoRef" src="" id="video-container" width="100%" controls></video>
-      <!-- <video width="720" height="540" controls>
-      <source src="this.activeVideo.videoSource" type="video/mp4">
+      <video id="myVideo" width="720" height="540" controls>
+      <source id="mp4_src" src=""
+       type="video/mp4">
+      </video>
+      <!-- <video id="myVideo" controls autoplay>
+      <source id="mp4_src" src=this.activeVideo.videoSource type="video/mp4">
+      Your browser does not support HTML5 video.
       </video> -->
       <h3>{{this.activeVideo.title}}</h3>
     </div>
@@ -23,7 +27,7 @@ let videos = [
     id: 1,
     title: "MP4 Test",
     thumbnail: "https://assets.pernod-ricard.com/uk/media_images/test.jpg",
-    videoSource: "https://www.youtube.com/embed/KB4_WIPE7vo",
+    videoSource: "../assets/test.mp4",
   },
   {
     id: 2,
@@ -46,6 +50,9 @@ export default {
     chooseVideo(video){
       //SET VIDEO AS ACTIVE VIDEO
       this.activeVideo = video;
+      console.log(this.activeVideo.videoSource);
+      document.getElementById('mp4_src').setAttribute("src", video.videoSource);
+      document.getElementById('myVideo').load();
     },
   },
   

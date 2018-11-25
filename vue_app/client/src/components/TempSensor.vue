@@ -22,7 +22,8 @@
           </thead>
           <tbody>
             <tr v-for="temp in tempData" :key="temp">
-              <td>{{ temp }}</td>
+              <td>{{ temp.Time }}</td>
+              <td>{{ temp.Temperature }}</td>
             </tr>
           </tbody>
         </table>

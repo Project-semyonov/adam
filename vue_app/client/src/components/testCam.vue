@@ -1,113 +1,137 @@
 <template>
-<div id="title">
-  <h1>Welcome to my video library!</h1>
-    Scroll through the videos below and click the one you want to play.
-  </div>
-  <div id="thumbnail-container">
-  </div>
-  <div id="player-container">
-  <video id="player">
-  </video>
-  <div id="controls">
-  </div>
+  <div class="video-player">
+    <div class="video-container">
+      <iframe width="640" height="360" :src="this.activeVideo.youtubeURL" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <h3>{{this.activeVideo.title}}</h3>
+    </div>
+    <div class="video-list">
+    <div @click="chooseVideo(video)" :key="video.id" v-for="video in videos" class="thumbnail"> </div>
+    <div :key="video.id" v-for="video in videos" class="thumbnail">
+        <div class="thumbnail-img">
+          <img :src="video.thumbnail" />
+        </div>
+        <div class="thumbnail-info">
+          <h3>{{video.title}}</h3>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-var videoFiles = ["1.mp4", "2.mp4", "3.mp4", "4.mp4", "5.mp4"];
-var player;
-var playerSource = document.createElement("source");
-document.addEventListener("DOMContentLoaded",function() { initialise(); }, false);
-
-function generateThumbnail(video) {
-  var canvas = document.createElement("canvas");
-  var container = document.getElementById("thumbnail-container");
-  var width = container.clientWidth;
-  var height = container.clientHeight;
-  canvas.width = (width / 3);
-  canvas.height = height;
-  canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
-  var image = document.createElement("img");
-  image.src = canvas.toDataURL();
-  return image; }
-
-function initialise() {
-  player = document.getElementById("player");
-  player.appendChild(playerSource);
-  player.controls = false;
-  videoFiles.forEach(function(file) {
-  var thumbSource = document.createElement("source");
-  thumbSource.src = file;
-  var thumbVideo = document.createElement("video");
-  thumbVideo.addEventListener("loadeddata", function() {
-  var container = document.getElementById("thumbnail-container")
-  var image = generateThumbnail(thumbVideo);
-  container.appendChild(image);
-  }, false);
-  thumbVideo.appendChild(thumbSource);
-  }); }
-
-thumbVideo.addEventListener("loadeddata", function() {
-  var container = document.getElementById("thumbnail-container")
-  var image = generateThumbnail(thumbVideo);
-  var link = document.createElement("a");
-  link.href = "javascript:play(\"" + thumbSource.src + "\")";
-  link.appendChild(image);
-  container.appendChild(link);
-  }, 
-false);
-
-function play(url) 
-{
-  playerSource.src = url;
-  player.controls = true;
-  player.load();
-  player.play(); 
-}
-
+let videos = [
+  {
+    id: 1,
+    title: "18-core iMac Pro Review: Not a Trap!",
+    thumbnail:
+      "https://i.ytimg.com/vi/jn9mHzXJIV0/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAvJvk4k_UNB9nst4pFP-txM1TLZA",
+    youtubeURL: "https://www.youtube.com/embed/jn9mHzXJIV0",
+    creator: "Marques Brownlee",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 2,
+    title: "Dope Tech: Camera Robots!",
+    thumbnail:
+      "https://i.ytimg.com/vi/UIwdCN4dV6w/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDhlan32jHSvicGZezDFPjAOdXGUA",
+    youtubeURL: "https://www.youtube.com/embed/UIwdCN4dV6w",
+    creator: "Marques Brownlee",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 3,
+    title: "Let's Talk About Tesla Roadster 2020!",
+    thumbnail:
+      "https://i.ytimg.com/vi/ctx4YBEdOxo/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBDnlrC2rVwXamNkicEEbc3Mf4T0w",
+    youtubeURL: "https://www.youtube.com/embed/ctx4YBEdOxo",
+    creator: "Marques Brownlee",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 4,
+    title: "Talking Tech with Neil deGrasse Tyson!",
+    thumbnail:
+      "https://i.ytimg.com/vi/pqQrL1K0Z5g/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLA5hTiwkz4Tr1w1hSMhPlwtmQeyYw",
+    youtubeURL: "https://www.youtube.com/embed/pqQrL1K0Z5g",
+    creator: "Marques Brownlee",
+    likes: 0,
+    views: 0
+  },
+  {
+    id: 5,
+    title: "The Apple Ecosystem: Explained!",
+    thumbnail:
+      "https://i.ytimg.com/vi/KB4_WIPE7vo/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLCCxXm7aoPShOwON74nhMlGYMUkHw",
+    youtubeURL: "https://www.youtube.com/embed/KB4_WIPE7vo",
+    creator: "Marques Brownlee",
+    likes: 0,
+    views: 0
+  }
+];
 export default {
+  name: 'VideoPlayer',
+  data () {
+    return {
+      videos,
+      activeVideo: videos[0]
+    }
+  },
+  methods:{
+  chooseVideo(video){
+      //SET VIDEO AS ACTIVE VIDEO
+      this.activeVideo = video;
+  }
+}
 }
 </script>
 
-
-
-<style>
-body {
-  background-color: #cccccc;
-  font-family: sans-serif;
+<style scoped>
+  .thumbnail{
+    display:flex;
+  }
+  .thumbnail img{
+    width:168px;
 }
-#player-container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 640px;
-  height: 480px;
-  background-color: #538c99;
-  border-radius: 20px;
+
+.thumbnail-info{
+    margin-left:20px;
 }
-#title {
-  margin-left: auto;
-  margin-right: auto;
-  width: 640px;
-  text-align: center;
-  padding-top: 30px;
-  padding-bottom: 50px;
-  background-color: #538c99;
-  color: #333333;
-  border-radius: 20px; }
 
-#thumbnail-container {
-  background-color: #cccccc;
-  margin-top: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 640px;
-  height: 120px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  border-radius: 20px; }
+.thumbnail h3{
+    font-size:16px;
+}
 
-video {
-  width: 100%;
-  height: 100%; }
+h3,
+p{
+    margin:0;
+    padding:0;
+}
+
+.thumbnail-views{
+    font-size:14px;
+}
+.video-player{
+    display:flex;
+    width:1200px;
+    margin:auto;
+}
+
+.video-container{
+    margin-right:40px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+}
+
+button{
+    background:#D0021B;
+    color:white;
+    border:none;
+    padding:10px 20px;
+}
 </style>

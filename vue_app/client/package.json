@@ -16,7 +16,8 @@
     "video.js": "^7.3.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
-    "vue-video": "^0.1.7"
+    "vue-video": "^0.1.7",
+    "vue-video-player": "^5.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.1.1",

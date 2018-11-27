@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './components/Home.vue'
 import TempSensor from './components/TempSensor.vue'
 import Camera from './components/Camera.vue'
+import Test from './components/testCam.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/camera',
       name: 'camera',
       component: Camera
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test
     },
     {
       path: '/temp',

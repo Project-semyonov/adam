@@ -96,10 +96,10 @@ class MyMotion:
         self.timestamp = datetime.now().strftime('%d.%H.%S')
         # filename = 'motion-video-{}.mjpeg'.format(self.timestamp)
         # for the docker container
-        # filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
+        filename = "/root/Videos/motion-video-{}.h264".format(self.timestamp)
 
         # used for testing swap between the two
-        filename = "motion-video-{}.h264".format(self.timestamp)
+        # filename = "motion-video-{}.h264".format(self.timestamp)
 
         self.video.copy_to(filename)
         self.camera.start_recording(filename)

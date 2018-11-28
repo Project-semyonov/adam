@@ -76,7 +76,6 @@ p{
     margin:0;
     padding:0;
 }
-
 .thumbnail-views{
     font-size:14px;
 }
@@ -85,7 +84,6 @@ p{
     width:1200px;
     margin:auto;
 }
-
 .video-container{
     margin-right:40px;
 }

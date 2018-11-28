@@ -33,7 +33,6 @@ let videos = [
   }
   ];
 
-
 export default {
   name: 'VideoPlayer',
   data () {

@@ -6,6 +6,6 @@ then
 else
         docker build -t semyonov4360/video_deploy:rpi .
         docker run -d -v /home/pi/Videos/:/root/Videos/ -it --name video_deploy semyonov4360/video_deploy:rpi
-        docker exec video_deploy sh test.sh
+        docker exec video_deploy sh responce.sh
         docker exec video_deploy crond
 fi

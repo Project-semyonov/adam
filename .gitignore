@@ -1,0 +1,34 @@
+# My git ignore using template from GitHub
+
+# password folder
+password.txt
+
+# ignore the test picures and videos
+*.jpg
+*.h264
+*.mp4
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Metadata
+*.idea
+*/.metadata/
+__pycache__
+*/.recommenders/
+.coverage
+# ignore the setup folders and files
+/dist/
+*.egg-info
+
+# Compiled class file
+*.class
+*.pyc
+*.classpath
+*.project
+*/.settings/
+
+# Log file
+*.log

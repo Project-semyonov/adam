@@ -26,5 +26,3 @@ if __name__ == '__main__':
 
         myfile = create_json_file()
         myfile.create_json()
-
-

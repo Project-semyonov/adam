@@ -25,7 +25,7 @@ pipeline {
 
                 //**Now push to semyonov4360 repo
                 sh "docker push semyonov4360/test_python"
-                
+
 
             }
         }

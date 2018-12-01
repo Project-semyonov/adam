@@ -2,32 +2,13 @@
   <div class="temp-container">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <h1>Temp Sensor</h1>
-    <div class="temp-table">
-      <div class="col-lg-4">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <div class="temp-table-header">
-              <th scope="col">Time</th>
-              <th scope="col">Temp</th>
-              <th scope="col">
-                <button type="button" class="btn btn-info btn-sm"
-                  v-on:click="getTemps">Update Temp</button>
-              </th>
-              </div>
-            </tr>
-            <div class="temp-alert">
-              <alert :message=message v-if="showMessage"></alert>
-            </div>
-          </thead>
-          <tbody>
-            <tr v-for="temp in tempData" :key="temp">
-              <td>{{ temp.Time }}</td>
-              <td>{{ temp.Temperature }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="temp-output">
+      <button type="button" class="btn btn-info btn-sm"
+      v-on:click="getTemps">Update Temp</button>
+      <alert :message=message v-if="showMessage"></alert>
+      <h2>Time: {{tempData.Time}}</h2>
+      <h2>Temperature: {{tempData.Temperature}}</h2>
+      <h2>Date: {{tempData.Date}}</h2>
     </div>
   </div>
 </template>
@@ -49,7 +30,7 @@ export default {
   },
   methods: {
     getTemps () {
-      const path = 'http://localhost:5000/temp/all'
+      const path = 'http://ec2-18-191-197-25.us-east-2.compute.amazonaws.com:5000/temp'
       // eslint-disable-next-line
       const updateTime = require('time-stamp')
       const currentTime = updateTime('HH:mm:ss')

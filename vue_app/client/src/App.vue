@@ -28,33 +28,12 @@
 .github-button{
   float: right;
 }
-.temp-table{
-  text-align: center;
-  table-layout: fixed;
-  margin: auto;
-  width: 20%;
-  color: azure;
-}
-.home-temp-table-header{
-  text-align: left;
-  table-layout: fixed;
-  margin: auto;
-  width: 20%;
-  color: azure;
-}
-.temp-table-header{
-  background-image: linear-gradient(to bottom right, rgba(110, 3, 83, 0.6),rgba(173, 101, 6, 0.6));
-}
-.temp-alert{
+.temp-output{
   padding: 10px;
+  background-color: lightgrey;
+  border-radius: 5px;
   background-image: linear-gradient(to bottom right,
   rgba(110, 3, 83, 0.6),rgba(173, 101, 6, 0.6));
-}
-tr:nth-child(even) {
-  background-image: linear-gradient(to bottom right, rgba(110, 3, 83, 0.6),rgba(173, 101, 6, 0.6));
-}
-tr:nth-child(odd) {
-  background-image: linear-gradient(to bottom right, rgba(173, 101, 6, 0.6),rgba(110, 3, 83, 0.6));
 }
 html,body, #app{
   height: 100%;

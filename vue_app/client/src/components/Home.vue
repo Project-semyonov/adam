@@ -1,33 +1,6 @@
 <template>
   <div class="homepage-container">
     <h1>Home</h1>
-    <div class="home-temp-table">
-      <div class="col-lg-4">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <div class="temp-table-header">
-              <h3>Temp Sensor</h3>
-              <th scope="col">Time</th>
-              <th scope="col">Temp</th>
-              <th scope="col">
-                <button type="button" class="btn btn-info btn-sm"
-                  v-on:click="getTemps">Update Temp</button>
-              </th>
-              </div>
-            </tr>
-            <div class="temp-alert">
-              <alert :message=message v-if="showMessage"></alert>
-            </div>
-          </thead>
-          <tbody>
-            <tr v-for="temp in tempData" :key="temp">
-              <td>{{ temp }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </template>
 

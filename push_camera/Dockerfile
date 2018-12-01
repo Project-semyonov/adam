@@ -1,11 +1,11 @@
-FROM alpine
+FROM python:3-alpine
 COPY . /root/
 WORKDIR /root/
 ENTRYPOINT sh
-COPY /deleter.sh /etc/periodic/hourly/
+RUN apk add ffmpeg
 COPY /converter.sh /etc/periodic/15min/
-RUN chmod +x /etc/periodic/hourly/*.sh
+COPY /deleter.sh /etc/periodic/15min/
 RUN chmod +x /etc/periodic/15min/*.sh
 #RUN crontab delete-cron
 #CMD crontab -l
-#CMD crond
+CMD ['sh', 'crond']

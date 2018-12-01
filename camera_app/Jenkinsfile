@@ -2,6 +2,12 @@ pipeline {
     agent any
 
     stages {
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+                sh "python3 -m unittest camera_app/tests/test.py"
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building docker image..'
@@ -20,11 +26,6 @@ pipeline {
                 //**Now push to semyonov4360 repo
                 sh "docker push semyonov4360/camera_app"
 
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
             }
         }
         stage('Deploy') {

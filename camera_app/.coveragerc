@@ -1,0 +1,8 @@
+[run]
+source =
+	camera_app.source_files.myMotion
+
+[report]
+exclude_lines =
+    def run
+    if __name__ == .__main__.:

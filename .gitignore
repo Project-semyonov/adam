@@ -6,6 +6,7 @@ password.txt
 # ignore the test picures and videos
 *.jpg
 *.h264
+*.mp4
 
 # Executables
 *.exe
@@ -15,11 +16,16 @@ password.txt
 # Metadata
 *.idea
 */.metadata/
-
+__pycache__
 */.recommenders/
+.coverage
+# ignore the setup folders and files
+/dist/
+*.egg-info
 
 # Compiled class file
 *.class
+*.pyc
 *.classpath
 *.project
 */.settings/

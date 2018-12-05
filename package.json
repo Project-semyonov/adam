@@ -14,7 +14,9 @@
   },
   "jest": {
     "verbose": true,
-    "setupFiles": ["<rootDir>/build/jest/register-context.js"],
+    "setupFiles": [
+      "<rootDir>/build/jest/register-context.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "vue",

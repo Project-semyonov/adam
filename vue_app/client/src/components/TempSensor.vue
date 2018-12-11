@@ -6,9 +6,11 @@
       <button type="button" class="btn btn-info btn-sm"
       v-on:click="getTemps">Update Temp</button>
       <alert :message=message v-if="showMessage"></alert>
-      <h2>Time: {{tempData.Time}}</h2>
-      <h2>Temperature: {{tempData.Temperature}}</h2>
-      <h2>Date: {{tempData.Date}}</h2>
+      <div v-for="temp in tempData">
+        <h2>Time: {{temp.Time}}</h2>
+        <h2>Temperature: {{temp.Temperature}}</h2>
+        <h2>Date: {{temp.Date}}</h2>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +22,7 @@ import Alert from './Alert'
 export default {
   data () {
     return {
-      tempData: '',
+      tempData: [],
       message: '',
       showMessage: false
     }
@@ -30,14 +32,14 @@ export default {
   },
   methods: {
     getTemps () {
-      const path = 'http://ec2-18-191-197-25.us-east-2.compute.amazonaws.com:5000/temp'
+      const path = 'http://ec2-3-16-10-155.us-east-2.compute.amazonaws.com:5000/temp'
       // eslint-disable-next-line
       const updateTime = require('time-stamp')
       const currentTime = updateTime('HH:mm:ss')
       this.showMessage = true
       axios.get(path)
-        .then((res) => {
-          this.tempData = res.data
+        .then((response) => {
+          this.tempData = response.data
           // eslint-disable-next-line
           this.message = 'Got temps from the sensor at ' + currentTime + '! 🤘 '
         })
@@ -52,4 +54,5 @@ export default {
     this.getTemps()
   }
 }
+
 </script>

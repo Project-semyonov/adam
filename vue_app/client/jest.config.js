@@ -7,8 +7,8 @@ module.exports = {
   ],
   collectCoverage: true,
   collectCoverageFrom: [
-  'src/components/*.{js,vue}',
-],
+    'src/components/*.{js,vue}'
+  ],
   transform: {
     '^.+\\.vue$': 'vue-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2|mp4)$': 'jest-transform-stub',
@@ -17,7 +17,7 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'
   },
-  
+
   snapshotSerializers: [
     'jest-serializer-vue'
   ],

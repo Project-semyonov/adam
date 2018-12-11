@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <div class="home-button">
-        <router-link to="/home" tag="button" class="btn btn-danger">Homepage</router-link>
+        <router-link to="/home" tag="button" class="btn btn-outline-danger">Homepage</router-link>
       </div>
       <router-link to="/camera" tag="button" class="btn btn-outline-warning"
         >Camera</router-link>

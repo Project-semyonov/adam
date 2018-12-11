@@ -1,7 +1,7 @@
 <template>
   <div class="video-player">
     <div class="video-container">
-      <video id="myVideo" controls autoplay>
+      <video id="myVideo" width="650" controls autoplay>
       <source id="mp4_src" src=this.activeVideo.videoSource type="video/mp4">
       Your browser does not support HTML5 video.
       </video>
@@ -19,24 +19,23 @@
 let videos = [
   {
     id: 1,
-    //videoSource: require('/home/roach/adam/flask_temp_ec2/source_files/Videos')
-    videoSource: require('../../../../flask_temp_ec2/source_files/Videos/video1.mp4')
+    videoSource: require('../assets/Videos/video1.mp4')
   }
   // {
   //   id: 2,
-  //   videoSource: require('../assets/toystory.mp4')
-  // },
+  //   videoSource: require('../assets/Videos/video2.mp4')
+  // }
   // {
   //   id: 3,
-  //   videoSource: require('../assets/toystory.mp4')
+  //   videoSource: require('../assets/Videos/video3.mp4')
   // },
   // {
   //   id: 4,
-  //   videoSource: require('../assets/toystory.mp4')
+  //   videoSource: require('../assets/Videos/video4.mp4')
   // },
   // {
   //   id: 5,
-  //   videoSource: require('../assets/toystory.mp4')
+  //   videoSource: require('../assets/Videos/video5.mp4')
   // }
 ]
 
@@ -92,5 +91,8 @@ p{
 }
 .video-container{
     margin-right:40px;
+}
+.myVideo{
+  object-fit: scale-down;
 }
 </style>

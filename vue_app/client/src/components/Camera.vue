@@ -19,7 +19,8 @@
 let videos = [
   {
     id: 1,
-    videoSource: require('../assets/video1.mp4')
+    //videoSource: require('/home/roach/adam/flask_temp_ec2/source_files/Videos')
+    videoSource: require('../../../../flask_temp_ec2/source_files/Videos')
   }
   // {
   //   id: 2,

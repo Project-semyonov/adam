@@ -19,16 +19,16 @@
 let videos = [
   {
     id: 1,
+    videoSource: require('../assets/Videos/video0.mp4')
+  },
+  {
+    id: 2,
     videoSource: require('../assets/Videos/video1.mp4')
+  },
+  {
+    id: 3,
+    videoSource: require('../assets/Videos/video2.mp4')
   }
-  // {
-  //   id: 2,
-  //   videoSource: require('../assets/Videos/video2.mp4')
-  // }
-  // {
-  //   id: 3,
-  //   videoSource: require('../assets/Videos/video3.mp4')
-  // },
   // {
   //   id: 4,
   //   videoSource: require('../assets/Videos/video4.mp4')

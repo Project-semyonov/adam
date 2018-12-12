@@ -1,3 +1,8 @@
-#!/bin/sh
 
-aws s3 cp ~/Videos/*.mp4 s3://semyonovtest
+for f in ~/Videos/*.mp4;
+do
+#    echo $f
+#    echo ${f%.h264}.mp4
+	 aws s3 cp $f s3://semyonovtest/Videos/
+
+done

@@ -1,19 +1,17 @@
 <template>
   <div class="video-player">
     <div class="video-container">
-      <video id="myVideo" controls autoplay>
+      <video id="myVideo" width="650" controls autoplay>
       <source id="mp4_src" src=this.activeVideo.videoSource type="video/mp4">
       Your browser does not support HTML5 video.
       </video>
       <h3>{{this.activeVideo.title}}</h3>
     </div>
     <div class="video-list">
-    <div @click="chooseVideo(video)" :key="video.id" v-for="video in videos" class="thumbnail">
-        <div class="thumbnail-img">
-          <img :src="video.thumbnail"/>
-        </div>
+      <div @click="chooseVideo(video)" :key="video.id" v-for="video in videos">
+          <button type="button" class="btn btn-info btn-sm">Video: {{video.id}}</button>
+      </div>
     </div>
-</div>
   </div>
 </template>
 
@@ -21,17 +19,25 @@
 let videos = [
   {
     id: 1,
-    title: "MP4 Test",
-    thumbnail: require('../assets/logo.png'),
-    videoSource: require('../assets/test.mp4'),
+    videoSource: require('../assets/Videos/video0.mp4')
   },
   {
     id: 2,
-    title: "ToyStory MP4",
-    thumbnail: require('../assets/test.jpg'),
-    videoSource: require('../assets/toystory.mp4'),
+    videoSource: require('../assets/Videos/video1.mp4')
+  },
+  {
+    id: 3,
+    videoSource: require('../assets/Videos/video2.mp4')
   }
-  ];
+  // {
+  //   id: 4,
+  //   videoSource: require('../assets/Videos/video4.mp4')
+  // },
+  // {
+  //   id: 5,
+  //   videoSource: require('../assets/Videos/video5.mp4')
+  // }
+]
 
 export default {
   name: 'VideoPlayer',
@@ -41,16 +47,16 @@ export default {
       activeVideo: videos[0]
     }
   },
-  methods:{
-    chooseVideo(video){
-      //SET VIDEO AS ACTIVE VIDEO
-      this.activeVideo = video;
-      console.log(this.activeVideo.videoSource);
-      document.getElementById('mp4_src').setAttribute("src", video.videoSource);
-      document.getElementById('myVideo').load();
-    },
-  },
-  
+  methods: {
+    chooseVideo (video) {
+      // SET VIDEO AS ACTIVE VIDEO
+      this.activeVideo = video
+      console.log(this.activeVideo.videoSource)
+      document.getElementById('mp4_src').setAttribute('src', video.videoSource)
+      document.getElementById('myVideo').load()
+    }
+  }
+
 }
 </script>
 
@@ -85,5 +91,8 @@ p{
 }
 .video-container{
     margin-right:40px;
+}
+.myVideo{
+  object-fit: scale-down;
 }
 </style>

@@ -19,6 +19,8 @@ password.txt
 __pycache__
 */.recommenders/
 .coverage
+*/htmlcov/
+
 # ignore the setup folders and files
 /dist/
 *.egg-info
@@ -32,3 +34,7 @@ __pycache__
 
 # Log file
 *.log
+
+# credential files
+*/responce.sh
+*/AWSInstall.sh

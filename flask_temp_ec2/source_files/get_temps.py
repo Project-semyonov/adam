@@ -13,8 +13,9 @@ def get_s3_data():
                             path+'/Temps/temp.json'])
 
     videos = check_output(['aws', 's3', 'cp',
-                            's3://semyonovtest/motion-video-01.17.13.mp4',
-                            path+'/Videos/video1.mp4'])
+                            's3://semyonovtest/Videos',
+                            path+'/Videos/', '--recursive'])
+    print(videos)
     print(s3_copy)
     return s3_copy
 getdata = get_s3_data()
